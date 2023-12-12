@@ -1,9 +1,6 @@
 
-from django.contrib import admin
-from django.urls import path
-from sproutApp import views
+from rest_framework.decorators import api_view
 
-
-urlpatterns=[
-    
-]
+@api_view(['GET'])
+def dummyView(request):
+    print("hello world")

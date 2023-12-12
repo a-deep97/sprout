@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sproutApp.apps.SproutappConfig',
+    'rest_framework',
+    'corsheaders',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +79,7 @@ WSGI_APPLICATION = 'sprout.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sprout_DB',
+        'NAME': 'sprout_db',
         'USER': 'root',
         'PASSWORD': 'admin',
         'HOST': 'localhost',

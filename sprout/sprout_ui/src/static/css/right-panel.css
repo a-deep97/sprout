@@ -1,17 +1,14 @@
-/* Reset some default styles */
+
 body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
   }
   
-  /* Aside Panel Styles */
   .sidebar {
-    background-color: #d6eaf8; /* Light blue */
-color: #333; /* Dark text color */
-
-    
-    width: 100%; /* Full width on larger screens */
-    max-width: 200px; /* Maximum width */
+    background-color: #d6eaf8; 
+    color: #333;     
+    width: 100%; 
+    max-width: 200px; 
     padding: 15px;
   }
   
@@ -25,17 +22,17 @@ color: #333; /* Dark text color */
   }
   
   .nav-item {
-    margin-bottom: 10px; /* Adjust spacing between items */
+    margin-bottom: 10px;
   }
   
   .nav-link {
     text-decoration: none;
-    color: #333; /* Dark text color */
+    color: #333; 
     font-weight: bold;
     transition: color 0.3s ease;
   }
   
   .nav-link:hover {
-    color: #007bff; /* Blue color on hover */
+    color: #007bff;
   }
   

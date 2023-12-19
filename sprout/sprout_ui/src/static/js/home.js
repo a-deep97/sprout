@@ -3,6 +3,7 @@ import '../css/page-body.css';
 import React from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel'
+import PostCard from './utilities/post_card';
 
 const HomePage = () => {
   return (
@@ -10,8 +11,7 @@ const HomePage = () => {
         <LeftPanel/>  
         <div className="main-container">
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <h2>Main Display Container</h2>
-                <p>Welcome to our blogging site!</p>
+                <PostCard/>
             </main>
         </div>
         <RightPanel/>

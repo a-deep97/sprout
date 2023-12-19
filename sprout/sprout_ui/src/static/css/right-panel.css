@@ -6,9 +6,8 @@ body, h1, h2, h3, p {
   
   .sidebar {
     background-color: #d6eaf8; 
-    color: #333;     
-    width: 100%; 
-    max-width: 200px; 
+    color: #333;
+    width: 20vw; 
     padding: 15px;
   }
   

@@ -3,6 +3,7 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
+from sprout.sproutApp.lib.uid import generate_uid5
 from sproutApp.DB.author_model import AuthorModel
 from email_validator import validate_email, EmailNotValidError
 from django.core.mail import send_mail
@@ -18,7 +19,7 @@ class AuthorUtil():
         password=data.get('password')
         unique_salt = bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(password.encode('utf-8'),unique_salt)
-        author_id = AuthorUtil.generate_uid(data.get('email'))
+        author_id = generate_uid5(data.get('email'))
         date_joined = datetime.now().strftime("%Y-%m-%d")
         time_joined = datetime.now().strftime("%H:%M:%S")
         params={
@@ -66,11 +67,6 @@ class AuthorUtil():
         except EmailNotValidError as e:
             return False
         """
-
-    @staticmethod
-    def generate_uid(email):
-        unique_id = uuid.uuid5(uuid.NAMESPACE_DNS,email)
-        return str(unique_id)
     
     @staticmethod
     def send_email(email,sub,msg):

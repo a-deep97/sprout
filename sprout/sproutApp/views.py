@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
+from sprout.sproutApp.lib.utils.sprout_utils import SproutUtils
 from sproutApp.lib.utils.author_utils import AuthorUtil
 
 @csrf_exempt  
@@ -46,3 +47,21 @@ def logoutAuthor(request):
         response = Response({'message': 'Successfully logged out'})
         response.set_cookie('sessionid','')
     return Response({'error': 'Invalid request method'}, status=400)
+
+@api_view(['POST'])
+def createSprout(request):
+    if request.method == 'POST':
+        author_id= request.session['author_id']
+        import pdb
+        pdb.set_trace()
+        if not author_id:
+            Response({'error':'Authentication failure'},status=401)
+        
+        data={
+            'title': request.data.get('title'),
+            'content' : request.data.get('content'),
+            'author_id' : author_id,
+            'draft' : request.get('draft')
+        }
+        sprout_id=SproutUtils.create_sprout(**data)
+    return Response(sprout_id)

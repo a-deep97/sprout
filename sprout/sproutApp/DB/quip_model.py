@@ -1,4 +1,4 @@
-from .blog_model import BlogModel
+from .sprout_model import BlogModel
 from .base_model import BaseModel
 
 class QuipModel(BaseModel):

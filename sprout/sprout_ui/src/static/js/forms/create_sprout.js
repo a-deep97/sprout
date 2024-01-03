@@ -35,7 +35,7 @@ const CreateSproutForm = () => {
     const formData={
         "title":title,
         "content":editorValue,
-        "published": (!isDraft)
+        "draft": isDraft
     }
     const csrfToken = getCookie('csrftoken');
     console.log(formData)

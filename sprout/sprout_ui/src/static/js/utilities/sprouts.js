@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
+import SproutCard from './sprout_card';
 
 function UserPosts(props){
     const [posts, setPosts] = useState([]);
@@ -31,35 +32,23 @@ function UserPosts(props){
                 navigate('/')
         });
     }
-    const createPostCards = (postList) => {
+    const createSproutCards = (postList) => {
         return postList.map((post) => (
           <SproutCard
-            key={post.id} // Make sure each card has a unique key
+            key={post.sprout_id} // Make sure each card has a unique key
             title={post.title}
             content={post.content}
             author={post.author}
-            date={post.date}
-            time={post.time}
-            likeCount={post.likeCount}
-            dislikeCount={post.dislikeCount}
+            date={post.create_date}
+            time={post.create_time}
+            likeCount={post.likes}
+            dislikeCount={post.dislikes}
           />
         ));
       };
     return (
-        <div>
-        <h2>User Posts</h2>
-        {loading ? (
-            <p>Loading posts...</p>
-        ) : (
-            <ul>
-            {posts.map(post => (
-                <li key={post.id}>
-                <strong>{post.title}</strong>
-                <p>{post.body}</p>
-                </li>
-            ))}
-            </ul>
-        )}
+        <div className='sprout-list'>
+            {createSproutCards}
         </div>
     );
 };

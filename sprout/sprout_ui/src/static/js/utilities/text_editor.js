@@ -33,7 +33,7 @@ const TextEditor = ({ value, onChange }) => {
         value={value}
         onChange={onChange}
         modules={modules}
-        placeholder="Write something..."
+        placeholder="Write here... "
         />
     </div>
   );

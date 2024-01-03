@@ -1,8 +1,9 @@
 
-from django.contrib import admin
-from django.urls import include, path
-from sproutApp.views import dummyView
+from django.urls import path
+import sproutApp.views as views
 
 urlpatterns = [
-    path('',view=dummyView , name='index'),
+    path('login',views.loginAuthor),
+    path('signup',views.signupAuthor),
+    path('logout',views.logoutAuthor),
 ]

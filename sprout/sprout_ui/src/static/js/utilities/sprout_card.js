@@ -1,8 +1,8 @@
-import '../../css/post-card.css';
+import '../../css/sprout-card.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
 
-const PostCard = ({ title, content, author, date, time, likeCount, dislikeCount }) => {
+const SproutCard = ({ title, content, author, date, time, likeCount, dislikeCount }) => {
   return (
     <div className="card-body">
         <div className="content-container">
@@ -33,4 +33,4 @@ const PostCard = ({ title, content, author, date, time, likeCount, dislikeCount 
   );
 };
 
-export default PostCard;
+export default SproutCard;

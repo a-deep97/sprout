@@ -3,7 +3,7 @@ import '../css/page-body.css';
 import React from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel'
-import PostCard from './utilities/post_card';
+import PostCard from './utilities/sprout_card';
 import Logo from './utilities/logo';
 
 const HomePage = () => {

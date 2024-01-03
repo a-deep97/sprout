@@ -1,14 +1,53 @@
-// Login.js
-import React from 'react';
 import '../../css/login.css';
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const LoginForm = (props) => {
-  const navigate =useNavigate()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate()
   const handleSignupClick = () => {
       props.onToggleForm()
       navigate('/auth')
   };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const formData={
+      "email":email,
+      "password":password,
+    }
+    const csrfToken = getCookie('csrftoken');
+    console.log(formData)
+    fetch('http://127.0.0.1:8000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify(formData),
+        credentials : 'include',
+        })
+        .then((response) => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Response from server:', data);
+            props.onToggleForm()
+            navigate('/')
+        })
+        .catch((error) => {
+            console.error('There was a problem with the signup operation:', error);
+            window.alert("User could not be registered :( \n\n "+ error.message)
+    });
+  }
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
@@ -17,12 +56,12 @@ const LoginForm = (props) => {
             <div className="card-body">
               <h2 className="card-title text-center mb-4">Login</h2>
               {/* Login Form */}
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="mb-3">
-                  <input type="text" className="form-control" id="username" name="username" placeholder='username' required />
+                  <input type="text" className="form-control" id="email" name="email" placeholder='email' onChange={(e) => setEmail(e.target.value)} required />
                 </div>
                 <div className="mb-3">
-                  <input type="password" className="form-control" id="password" name="password" placeholder='password' required />
+                  <input type="password" className="form-control" id="password" name="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} required />
                 </div>
                 <div className="mb-3 form-check">
                   <input type="checkbox" className="form-check-input" id="rememberMe" />

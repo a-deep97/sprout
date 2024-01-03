@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_COOKIE_SECURE = True
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -47,6 +52,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -123,8 +129,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"sprout_ui/build/static"),
+    os.path.join(BASE_DIR,"sprout_ui/src/static"),
+    os.path.join(BASE_DIR,"sprout_ui/public"),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+CORS_ALLOW_CREDENTIALS = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CORS_ORIGIN_ALLOW_ALL=False
+CORS_ORIGIN_WHITELIST=[
+    'http://127.0.0.1:3000'    #   allowing frontend source to fetch
+]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Adjust the port as needed
+EMAIL_USE_TLS = True  # Use True for TLS, or False for SSL
+EMAIL_HOST_USER = 'amanfortest321@gmail.com'
+EMAIL_HOST_PASSWORD = 'hmej mliv uoge yjhx'

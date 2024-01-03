@@ -1,19 +1,21 @@
 
 .card-body {
-    margin: 20px;
-    background-color: #fff; 
-    border: 1px solid #ddd; 
-    padding: 10px;
-    border-radius: 8px; 
+  width: 100%;
+    height: auto;
+    margin: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   }
   
 .content-container {
-    margin: 5px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; 
-    -webkit-box-orient: vertical;
+  margin: 5px;
+  max-height: 150px; /* Adjust the max-height as needed */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   }
   .card-text {
     font-family: 'Arial', sans-serif; 

@@ -1,0 +1,59 @@
+/* Example CSS for SproutView component */
+
+.sprout-detail-view {
+  width: 90%;
+  height: 90%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 10px;
+  background-color: #f8f9fa; /* Light background color */
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 8px;
+}
+
+.sprout-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #343a40; /* Dark text color */
+  margin-bottom: 10px;
+}
+
+.sprout-author-info {
+  display: flex;
+  justify-content: space-between;
+  color: #868e96; /* Medium text color */
+  margin-bottom: 15px;
+}
+
+.sprout-content {
+  font-size: 16px;
+  color: #495057; /* Darker text color */
+  margin-bottom: 20px;
+}
+
+.thumb-icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.text-muted {
+  font-size: 12px;
+}
+
+.bi {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px; 
+}

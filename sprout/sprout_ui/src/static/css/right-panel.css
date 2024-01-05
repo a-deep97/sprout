@@ -1,0 +1,37 @@
+
+body, h1, h2, h3, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sidebar {
+    background-color: #d6eaf8; 
+    color: #333;
+    width: 20vw; 
+    padding: 15px;
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+  }
+  
+  .nav.flex-column {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .nav-item {
+    margin-bottom: 10px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #333; 
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #007bff;
+  }
+  

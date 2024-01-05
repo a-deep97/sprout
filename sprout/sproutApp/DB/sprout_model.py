@@ -6,7 +6,9 @@ class SproutModel(BaseModel):
         super().__init__()
         self.table='sprout'
 
-    def initiate(self,
+    def initiate(
+        self,
+        sprout_id:str,
         author_id:str,
         title:str,
         content:str,
@@ -14,6 +16,7 @@ class SproutModel(BaseModel):
         create_date:str,
         create_time:str,
     ):
+        self.sprout_id = sprout_id
         self.author_id=author_id
         self.title = title
         self.content = content
@@ -42,6 +45,8 @@ class SproutModel(BaseModel):
         (sprout_id,title,content,author_id,published,create_date,create_time)
         VALUES (%s,%s,%s,%s,%s,%s,%s)
         """
+        import pdb
+        pdb.set_trace()
         return self.insert(query, params)
 
     def update_sprout_post(self, post_id: int, title: str, content: str) -> None:

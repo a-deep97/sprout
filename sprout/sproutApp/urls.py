@@ -7,5 +7,5 @@ urlpatterns = [
     path('login',views.loginAuthor),
     path('signup',views.signupAuthor),
     path('logout',views.logoutAuthor),
-    #path('sprout/create',views.createSprout),
+    path('sprout/create',views.createSprout),
 ]

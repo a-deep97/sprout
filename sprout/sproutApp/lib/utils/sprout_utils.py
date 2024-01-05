@@ -1,7 +1,7 @@
 
-import datetime
-from sprout.sproutApp.DB.sprout_model import SproutModel
-from sprout.sproutApp.lib.uid import generate_uid4
+from datetime import datetime
+from sproutApp.DB.sprout_model import SproutModel
+from sproutApp.lib.uid import generate_uid4
 
 
 class SproutUtils():
@@ -9,6 +9,9 @@ class SproutUtils():
     @staticmethod
     def create_sprout(**data):
 
+        import pdb
+        pdb.set_trace()
+        
         create_date = datetime.now().strftime("%Y-%m-%d")
         create_time = datetime.now().strftime("%H:%M:%S")
         sprout_id = generate_uid4()

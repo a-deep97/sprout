@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 
 from django.conf import settings
-from sprout.sproutApp.lib.uid import generate_uid5
+from sproutApp.lib.uid import generate_uid5
 from sproutApp.DB.author_model import AuthorModel
 from email_validator import validate_email, EmailNotValidError
 from django.core.mail import send_mail

@@ -5,8 +5,8 @@ CREATE TABLE sprout (
     author_id VARCHAR(100) NOT NULL,
     category_id INT DEFAULT NULL,
     published BOOLEAN DEFAULT FALSE,
-    create_date DATE DEFAULT(CURRENT_DATE),
-    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    create_date DATE NOT NULL,
+    create_time TIME NOT NULL,
     likes INT DEFAULT 0,
     dislikes INT DEFAULT 0
 );

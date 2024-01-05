@@ -15,13 +15,10 @@ const CreateSproutForm = () => {
   };
 
   const saveContent = () => {
-    // Logic for saving or posting the content
-    debugger;
-    console.log('Content:', editorValue, 'Draft:', isDraft);
+    console.log('title:',title,'Content:', editorValue, 'Draft:', isDraft);
   };
 
   const handleSaveDraft = () => {
-    debugger;
     setIsDraft(true);
     saveContent();
   };
@@ -67,7 +64,7 @@ const CreateSproutForm = () => {
   return (
     <div>
       <form onSubmit>
-        <input type="text" className="form-control" id="title" name="title" placeholder='Your sprout title...' onChange={ (e) => {setTitle(e.value)}} required />
+        <input type="text" className="form-control" id="title" name="title" placeholder='Your sprout title...' value={title} onChange={ (e) => {setTitle(e.target.value)}} required />
         <TextEditor value={editorValue} onChange={handleEditorChange} />
         <button type="button" onClick={(e) => { handleSaveDraft(); handleSubmit(); }}>
             Save Draft

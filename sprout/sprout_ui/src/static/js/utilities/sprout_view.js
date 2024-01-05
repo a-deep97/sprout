@@ -1,7 +1,20 @@
 import '../../css/sprout-view.css';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation , useNavigate} from 'react-router-dom';
 
 const SproutView = (props) => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {sprout_id=null} = location.state || {};
+  useEffect(() => {
+    getSproutContent();
+  }, [sprout_id]);
+  const getSproutContent = () =>{
+    console.log("sprout id",sprout_id)
+    fetch(`http://127.0.0.1:8000/task?sprout_id=${sprout_id}`)
+  }
   return (
     <div className="sprout-detail-view">
       <h2 className="sprout-props.title">props.title</h2>

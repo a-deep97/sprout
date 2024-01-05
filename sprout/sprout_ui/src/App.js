@@ -6,6 +6,7 @@ import HomePage from '../src/static/js/home';
 import Sprout from '../src/static/js/sprout';
 import CreateSprout from '../src/static/js/create_sproute';
 import AuthPage from './static/js/auth';
+import Dashboard from './static/js/dashboard';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/home'  />
         <Route path='/sprout/create' element = {<CreateSprout/>} />
         <Route path='/sprout' element = {<Sprout/>} />
+        <Route path='/dashboard' element = {<Dashboard/>}/>
       </Routes>
     </BrowserRouter> 
   );

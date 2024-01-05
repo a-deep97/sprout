@@ -27,8 +27,15 @@ class SproutModel(BaseModel):
     def get_sprout_post(self, sprout_id: int):
         pass
 
-    def get_all_sprout_posts(self):
-        pass
+    def get_dashboard_sprouts(self,author_id:str):
+        params=[
+            author_id
+        ]
+        query=f"""
+        SELECT * FROM {self.table}
+        WHERE author_id=%s
+        """
+        return self.read_all(query,params)
 
     def create_sprout_post(self) -> int:
         params = [
@@ -45,8 +52,6 @@ class SproutModel(BaseModel):
         (sprout_id,title,content,author_id,published,create_date,create_time)
         VALUES (%s,%s,%s,%s,%s,%s,%s)
         """
-        import pdb
-        pdb.set_trace()
         return self.insert(query, params)
 
     def update_sprout_post(self, post_id: int, title: str, content: str) -> None:

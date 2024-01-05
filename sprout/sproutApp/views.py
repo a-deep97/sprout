@@ -63,3 +63,11 @@ def createSprout(request):
         }
         sprout_id=SproutUtils.create_sprout(**data)
     return Response({'sprout_id':sprout_id})
+
+@api_view(['GET'])
+def getDashboardPosts(request):
+    author_id = request.session['author_id']
+    if not author_id:
+        Response({'error':'Authentication failure'},status=401)
+    data = SproutUtils.get_dashboard_sprouts(author_id)
+    return Response(data)

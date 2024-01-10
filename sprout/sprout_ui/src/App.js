@@ -1,10 +1,11 @@
 
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import HomePage from '../src/static/js/home';
 import Sprout from '../src/static/js/sprout';
-import CreateSprout from '../src/static/js/create_sproute';
+import CreateSprout from './static/js/utilities/create_sprout';
 import AuthPage from './static/js/auth';
 import Dashboard from './static/js/dashboard';
 

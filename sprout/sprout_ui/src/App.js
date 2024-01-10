@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element = {<HomePage/>}  />
         <Route path='/auth' element={<AuthPage/>} />
-        <Route path='/home'  />
+        <Route path='/home'  element={<HomePage/>} />
         <Route path='/sprout/create' element = {<CreateSprout/>} />
         <Route path='/sprout/:sprout_id' element = {<Sprout/>} />
         <Route path='/dashboard' element = {<Dashboard/>}/>

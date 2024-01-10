@@ -1,20 +1,29 @@
 
+import { useNavigate } from 'react-router-dom';
 import '../../css/left-panel.css';
 import React from 'react';
 
 const LeftPanel = () => {
+
+  const navigate = useNavigate()
+  const handleHomeLink = () => {
+    navigate('/home')
+  }
+  const handleDashboardLink = () =>{
+    navigate('/dashboard')
+  }
   return (
     <aside className="col-md-3 col-lg-2 d-md-block bg-light sidebar">
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <a className="nav-link active" href="#">
-              Dashboard
+            <a className="nav-link active" onClick={handleHomeLink}>
+                Home
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Posts
+            <a className="nav-link" onClick={handleDashboardLink}>
+              Dashboard
             </a>
           </li>
           <li className="nav-item">
@@ -33,7 +42,6 @@ const LeftPanel = () => {
               Users
             </a>
           </li>
-          {/* Add as many rows as needed */}
         </ul>
       </div>
     </aside>

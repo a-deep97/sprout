@@ -10,7 +10,7 @@ const SproutCard = (props) => {
         const sprout_id_key={
             'sprout_id': sprout_id
         }
-        navigate('/sprout',{sprout_id_key})
+        navigate(`/sprout/${sprout_id}`);
     }
      return (
         <div className="card-body" onClick={() => handleCardClick(props.sprout_id)} >

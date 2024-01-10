@@ -35,7 +35,6 @@ const CreateSproutForm = () => {
         "draft": isDraft
     }
     const csrfToken = getCookie('csrftoken');
-    console.log(formData)
     fetch('http://127.0.0.1:8000/sprout/create', {
         method: 'POST',
         headers: {

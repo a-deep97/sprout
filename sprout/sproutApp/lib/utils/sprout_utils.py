@@ -42,3 +42,19 @@ class SproutUtils():
                     'dislikes':each[9]
                 })
         return sprouts
+
+    @staticmethod 
+    def get_sprout_post_data(sprout_id):
+        res= SproutModel().get_sprout_post_data(sprout_id)
+        sprout_data = None
+        if res:
+            sprout_data = {
+                    'sprout_id' :res[0],
+                    'title': res[1],
+                    'content': res[2],
+                    'create_date':res[6],
+                    'create_time':res[7],
+                    'likes':res[8],
+                    'dislikes':res[9]
+            }
+        return sprout_data

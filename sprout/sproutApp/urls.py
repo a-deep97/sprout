@@ -8,5 +8,6 @@ urlpatterns = [
     path('signup',views.signupAuthor),
     path('logout',views.logoutAuthor),
     path('sprout/create',views.createSprout),
+    path('sprout',views.getSproutPostData),
     path('dashboard/sprouts',views.getDashboardPosts)
 ]

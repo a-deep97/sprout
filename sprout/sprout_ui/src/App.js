@@ -16,7 +16,7 @@ function App() {
         <Route path='/auth' element={<AuthPage/>} />
         <Route path='/home'  />
         <Route path='/sprout/create' element = {<CreateSprout/>} />
-        <Route path='/sprout' element = {<Sprout/>} />
+        <Route path='/sprout/:sprout_id' element = {<Sprout/>} />
         <Route path='/dashboard' element = {<Dashboard/>}/>
       </Routes>
     </BrowserRouter> 

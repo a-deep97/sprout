@@ -4,9 +4,9 @@ body, h1, h2, h3, p {
     padding: 0;
   }
 
-  .sidebar {
-    background-color: #d6eaf8; 
-    color: #333; 
+  .left-panel {
+    background-color: black; 
+    color: white;
     width: 20vw;
     padding: 15px;
   }
@@ -21,17 +21,24 @@ body, h1, h2, h3, p {
   }
   
   .nav-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 20px;
   }
   
   .nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    color: black; 
+    transition: color 0.3s, font-size 0.3s;
   }
-  
   .nav-link:hover {
-    color: #007bff;
+    color: white; /* Text color on hover */
+    transform: scale(1.1); /* Stretch effect on hover */
   }
-  
+  .custom-nav-item:hover {
+    border-radius: 5px; 
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+    background-color: rgba(0, 0, 0, 0.1);
+  }

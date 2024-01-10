@@ -1,6 +1,6 @@
 
-import { useNavigate } from 'react-router-dom';
 import '../../css/left-panel.css';
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 const LeftPanel = () => {
 
@@ -12,7 +12,7 @@ const LeftPanel = () => {
     navigate('/dashboard')
   }
   return (
-    <aside className="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+    <aside className="left-panel">
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">
@@ -30,7 +30,6 @@ const LeftPanel = () => {
               Categories
             </a>
           </li>
-          {/* Add more rows for different functions */}
           <li className="nav-item">
             <a className="nav-link" href="#">
               Tags

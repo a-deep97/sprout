@@ -1,0 +1,32 @@
+/* Logo.css */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px;
+    padding-right: 50px;
+    background-color: #fff;  /* Set the background color to white */
+    color: #000;  /* Set the text color to black */
+    transition: background-color 0.3s;
+  }
+  
+  .logo-container:hover {
+    background-color: #eee;  /* Change background color on hover */
+  }
+  
+  .logo-text {
+    margin: 0;
+    font-size: 24px;  /* Set the font size */
+    font-weight: bolder;
+    letter-spacing: 2px;  /* Add letter-spacing for better visibility */
+    font-family: 'Courier New', monospace; /* Example of a fancy font */
+  }
+  
+  /* Add a subtle scale animation on hover */
+  .logo-container:hover .logo-text {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+  

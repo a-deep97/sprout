@@ -73,10 +73,25 @@ def getDashboardPosts(request):
 @api_view(['GET'])
 def getSproutPostData(request):
     
-    author_id=request.session['author_id']
+    author_id=request.session.get('author_id')
     if not author_id:
         Response({'error':'Authentication failure'},status=401)
     
     data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'))
     return Response(data)
-    
+
+@api_view(['GET'])
+def likeSproutPost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        Response({'error':'Authentication failure'},status=401)
+    SproutUtils.like_sprout_post(request.GET.get('sprout_id'))
+    return Response({'info':'Liked the post'})
+
+@api_view(['GET'])
+def dislikeSproutPost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        Response({'error':'Authentication failure'},status=401)
+    SproutUtils.dislike_sprout_post(request.GET.get('sprout_id'))
+    return Response({'info':'Liked the post'})

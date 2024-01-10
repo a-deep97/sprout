@@ -38,14 +38,14 @@ function Sprouts(props){
     const createSproutCards = (postList) => {
         return postList.map((post) => (
           <SproutCard
-            sprout_id={post.sprout_id} // Make sure each card has a unique key
+            sprout_id={post.sprout_id}
             title={post.title}
             content={post.content}
             author={post.author}
-            date={post.create_date}
-            time={post.create_time}
-            likeCount={post.likes}
-            dislikeCount={post.dislikes}
+            create_date={post.create_date}
+            create_time={post.create_time}
+            likes={post.likes}
+            dislikes={post.dislikes}
           />
         ));
       };

@@ -58,3 +58,11 @@ class SproutUtils():
                     'dislikes':res[9]
             }
         return sprout_data
+
+    @staticmethod
+    def like_sprout_post(sprout_id):
+        SproutModel().like_sprout_post(sprout_id) 
+    
+    @staticmethod
+    def dislike_sprout_post(sprout_id):
+        SproutModel().dislike_sprout_post(sprout_id) 

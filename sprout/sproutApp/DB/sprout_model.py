@@ -24,9 +24,14 @@ class SproutModel(BaseModel):
         self.create_date = create_date
         self.create_time = create_time
 
-    def get_sprout_post(self, sprout_id: int):
-        pass
-
+    def get_sprout_post_data(self, sprout_id: str):
+        params=[sprout_id]
+        query= f"""
+        SELECT * FROM {self.table}
+        WHERE sprout_id = %s
+        """
+        data = self.read(query,params)
+        return data
     def get_dashboard_sprouts(self,author_id:str):
         params=[
             author_id

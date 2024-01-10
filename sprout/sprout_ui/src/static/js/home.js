@@ -5,6 +5,7 @@ import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel'
 import PostCard from './utilities/sprout_card';
 import Logo from './utilities/logo';
+import CreateSproutButton from './buttons/create_sprout_button';
 
 const HomePage = () => {
   return (
@@ -12,6 +13,7 @@ const HomePage = () => {
         <LeftPanel/>  
         <div className="main-container">
             <Logo/>
+            <div className='create-section'><CreateSproutButton/></div>
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
                 <PostCard/>
             </main>

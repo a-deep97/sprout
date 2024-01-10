@@ -11,8 +11,6 @@ def signupAuthor(request):
         data=request.data
         try:
             author=AuthorUtil.signup_author(**data)
-            import pdb
-            pdb.set_trace()
             return Response(author)
         except Exception as exc:
             return Response({'error': f'Could not register user {str(exc)}'}, status=500)
@@ -71,3 +69,14 @@ def getDashboardPosts(request):
         Response({'error':'Authentication failure'},status=401)
     data = SproutUtils.get_dashboard_sprouts(author_id)
     return Response(data)
+
+@api_view(['GET'])
+def getSproutPostData(request):
+    
+    author_id=request.session['author_id']
+    if not author_id:
+        Response({'error':'Authentication failure'},status=401)
+    
+    data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'))
+    return Response(data)
+    

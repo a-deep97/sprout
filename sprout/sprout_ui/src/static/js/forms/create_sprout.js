@@ -64,11 +64,11 @@ const CreateSproutForm = () => {
     <div>
       <form onSubmit>
         <input type="text" className="form-control" id="title" name="title" placeholder='Your sprout title...' value={title} onChange={ (e) => {setTitle(e.target.value)}} required />
-        <TextEditor value={editorValue} onChange={handleEditorChange} />
-        <button type="button" onClick={(e) => { handleSaveDraft(); handleSubmit(); }}>
+        <TextEditor className="text-editor" value={editorValue} onChange={handleEditorChange} />
+        <button className='form-buttons' type="button" onClick={(e) => { handleSaveDraft(); handleSubmit(); }}>
             Save Draft
         </button>
-        <button type="button" onClick={(e) => { handlePost(); handleSubmit(); }}>
+        <button type="button" className='form-buttons' onClick={(e) => { handlePost(); handleSubmit(); }}>
           Post
         </button>
       </form>

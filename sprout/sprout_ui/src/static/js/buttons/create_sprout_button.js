@@ -1,4 +1,5 @@
 
+import '../../css/create-sprout-button.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +10,7 @@ const CreateSproutButton = () => {
         navigate('/sprout/create')
     }
     return (
-        <button type="button" class="btn btn-dark" onClick={handleCreate}>Create</button>
+        <button type="button" className='create-sprout-btn' onClick={handleCreate}>Create</button>
      );
 };
 

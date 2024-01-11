@@ -60,9 +60,17 @@ class SproutUtils():
         return sprout_data
 
     @staticmethod
-    def like_sprout_post(sprout_id):
-        SproutModel().like_sprout_post(sprout_id) 
+    def increase_like_count(sprout_id):
+        SproutModel().increase_like_count(sprout_id) 
+
+    @staticmethod 
+    def decrease_like_count(sprout_id):
+        SproutModel().decrease_like_count(sprout_id)
+
+    @staticmethod
+    def increase_dislike_count(sprout_id):
+        SproutModel().increase_dislike_count(sprout_id) 
     
     @staticmethod
-    def dislike_sprout_post(sprout_id):
-        SproutModel().dislike_sprout_post(sprout_id) 
+    def decrease_dislike_count(sprout_id):
+        SproutModel().decrease_dislike_count(sprout_id)

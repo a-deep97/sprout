@@ -43,11 +43,9 @@ const SproutCard = (props) => {
             })
             .then((data) => {
                 console.log('Response from server:', data);
-                if(isLike){
-                    setLike(likes+1);
-                }else{
-                    setDislike(dislikes+1);
-                }
+                debugger
+                setLike(likes+data['likes_changed']);
+                setDislike(dislikes+data['dislikes_changed']);
             })
             .catch((error) => {
                 console.error('There was a problem with the create operation:', error);
@@ -56,11 +54,11 @@ const SproutCard = (props) => {
     }
     const handleLike = (e) => {
         e.stopPropagation();
-        fetchLikeDislike(`http://127.0.0.1:8000/sprout/like?sprout_id=${sproutID}`,true);
+        fetchLikeDislike(`http://127.0.0.1:8000/sprout/like?sprout_id=${sproutID}`);
     }
     const handleDislike = (e) => {
         e.stopPropagation();
-        fetchLikeDislike(`http://127.0.0.1:8000/sprout/dislike?sprout_id=${sproutID}`,false);
+        fetchLikeDislike(`http://127.0.0.1:8000/sprout/dislike?sprout_id=${sproutID}`);
     }
     const handleCardClick = (sprout_id) => {
         const sprout_id_key={

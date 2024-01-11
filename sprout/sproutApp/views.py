@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
+from sproutApp.lib.utils.author_action_utils import AuthorActionUtils
 from sproutApp.lib.utils.sprout_utils import SproutUtils
 from sproutApp.lib.utils.author_utils import AuthorUtil
 
@@ -85,13 +86,13 @@ def likeSproutPost(request):
     author_id= request.session.get('author_id')
     if not author_id:
         Response({'error':'Authentication failure'},status=401)
-    SproutUtils.like_sprout_post(request.GET.get('sprout_id'))
-    return Response({'info':'Liked the post'})
+    res=AuthorActionUtils.like_sprout_post(author_id,request.GET.get('sprout_id'))
+    return Response(res)
 
 @api_view(['GET'])
 def dislikeSproutPost(request):
     author_id= request.session.get('author_id')
     if not author_id:
         Response({'error':'Authentication failure'},status=401)
-    SproutUtils.dislike_sprout_post(request.GET.get('sprout_id'))
-    return Response({'info':'Liked the post'})
+    res=AuthorActionUtils.dislike_sprout_post(author_id,request.GET.get('sprout_id'))
+    return Response(res)

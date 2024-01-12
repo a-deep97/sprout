@@ -3,16 +3,20 @@ import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
 
-function Sprouts(props){
+function Sprouts({user_posts}){
     const [posts, setPosts] = useState([]);
-    const [dashboardPosts,setDashboardPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAuthorPosts = () => {
+        const fetchPosts = (user_posts) => {
+            let url=null
+            if(user_posts==true){
+                url=`http://127.0.0.1:8000/dashboard/sprouts`;
+            }else{
+                url=`http://127.0.0.1:8000/home/sprouts`;
+            }
             const csrfToken = getCookie('csrftoken');
-            fetch('http://127.0.0.1:8000/dashboard/sprouts', {
+            fetch(url, {
                 method: 'GET',
                 headers: {
                     'X-CSRFToken': csrfToken,
@@ -26,14 +30,14 @@ function Sprouts(props){
                     return response.json();
                 })
                 .then((data) => {
-                    setDashboardPosts(data)  
+                    setPosts(data)  
                 })
                 .catch((error) => {
                     console.error('There was a problem with the fetch operation:', error);
                     navigate('/')
             });
         }
-        fetchAuthorPosts()
+        fetchPosts()
     },[navigate]);
     const createSproutCards = (postList) => {
         return postList.map((post) => (
@@ -51,7 +55,7 @@ function Sprouts(props){
       };
     return (
         <div className='sprout-list'>
-            {props.user_posts ? createSproutCards(dashboardPosts) : createSproutCards([])}
+            {createSproutCards(posts)}
         </div>
     );
 };

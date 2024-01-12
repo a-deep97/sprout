@@ -32,7 +32,7 @@ class SproutModel(BaseModel):
         """
         data = self.read(query,params)
         return data
-    def get_dashboard_sprouts(self,author_id:str):
+    def get_posts(self,author_id:str):
         params=[
             author_id
         ]

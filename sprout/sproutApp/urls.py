@@ -11,5 +11,6 @@ urlpatterns = [
     path('sprout',views.getSproutPostData),
     path('sprout/like',views.likeSproutPost),
     path('sprout/dislike',views.dislikeSproutPost),
-    path('dashboard/sprouts',views.getDashboardPosts)
+    path('dashboard/sprouts',views.getDashboardPosts),
+    path('home/sprouts',views.getHomePosts),
 ]

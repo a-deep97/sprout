@@ -52,7 +52,7 @@ def createSprout(request):
     if request.method == 'POST':
         author_id= request.session['author_id']
         if not author_id:
-            Response({'error':'Authentication failure'},status=401)
+            return Response({'error':'Authentication failure'},status=401)
         
         data={
             'title': request.data.get('title'),
@@ -64,10 +64,18 @@ def createSprout(request):
     return Response({'sprout_id':sprout_id})
 
 @api_view(['GET'])
+def getHomePosts(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    data = SproutUtils.get_home_posts(author_id)
+    return Response(data)
+
+@api_view(['GET'])
 def getDashboardPosts(request):
     author_id = request.session['author_id']
     if not author_id:
-        Response({'error':'Authentication failure'},status=401)
+        return Response({'error':'Authentication failure'},status=401)
     data = SproutUtils.get_dashboard_sprouts(author_id)
     return Response(data)
 
@@ -76,7 +84,7 @@ def getSproutPostData(request):
     
     author_id=request.session.get('author_id')
     if not author_id:
-        Response({'error':'Authentication failure'},status=401)
+        return Response({'error':'Authentication failure'},status=401)
     
     data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'))
     return Response(data)
@@ -85,7 +93,7 @@ def getSproutPostData(request):
 def likeSproutPost(request):
     author_id= request.session.get('author_id')
     if not author_id:
-        Response({'error':'Authentication failure'},status=401)
+        return Response({'error':'Authentication failure'},status=401)
     res=AuthorActionUtils.like_sprout_post(author_id,request.GET.get('sprout_id'))
     return Response(res)
 
@@ -93,6 +101,6 @@ def likeSproutPost(request):
 def dislikeSproutPost(request):
     author_id= request.session.get('author_id')
     if not author_id:
-        Response({'error':'Authentication failure'},status=401)
+        return Response({'error':'Authentication failure'},status=401)
     res=AuthorActionUtils.dislike_sprout_post(author_id,request.GET.get('sprout_id'))
     return Response(res)

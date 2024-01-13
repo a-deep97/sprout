@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from sproutApp.lib.utils.author_action_utils import AuthorActionUtils
 from sproutApp.lib.utils.sprout_utils import SproutUtils
 from sproutApp.lib.utils.author_utils import AuthorUtil
-
+from django.contrib.auth import logout
 @csrf_exempt  
 @api_view(['GET','POST'])
 def signupAuthor(request):
@@ -23,6 +23,7 @@ def loginAuthor(request):
         data = request.data
         user=AuthorUtil.login_author(**data)
         if user:
+
             request.session['author_id'] = user['author_id']
             request.session['email'] = user['email']
             request.session['firstname'] = user['firstname']
@@ -36,7 +37,10 @@ def loginAuthor(request):
 @api_view(['POST'])
 @csrf_exempt
 def logoutAuthor(request):
+    
     if request.method == 'POST':
+        logout(request)
+        """
         request.session['author_id'] = None
         request.session['email'] = None
         request.session['firstname'] = None
@@ -44,7 +48,10 @@ def logoutAuthor(request):
         request.session['is_authenticated'] = False
         request.session.flush()
         response = Response({'message': 'Successfully logged out'})
-        response.set_cookie('sessionid','')
+        """
+        response = Response({'message': 'Successfully logged out'})
+        response.delete_cookie('sessionid')
+        return response
     return Response({'error': 'Invalid request method'}, status=400)
 
 @api_view(['GET'])

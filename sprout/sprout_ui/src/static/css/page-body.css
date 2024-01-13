@@ -16,7 +16,7 @@ body, h1, h2, h3, p {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 60vw;
+    width: 100%;
   }
   .create-section {
     display: flex;

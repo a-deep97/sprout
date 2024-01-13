@@ -1,6 +1,6 @@
 
 import '../css/page-body.css';
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel';
 import Sprouts from './utilities/sprouts';

@@ -47,6 +47,13 @@ def logoutAuthor(request):
         response.set_cookie('sessionid','')
     return Response({'error': 'Invalid request method'}, status=400)
 
+@api_view(['GET'])
+def checkAuthentication(request):
+    author_id=request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    return Response({'info':'User is authenticated'},status=201)
+
 @api_view(['POST'])
 def createSprout(request):
     if request.method == 'POST':

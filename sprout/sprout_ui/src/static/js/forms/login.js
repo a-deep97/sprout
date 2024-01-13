@@ -17,7 +17,6 @@ const LoginForm = (props) => {
       "password":password,
     }
     const csrfToken = getCookie('csrftoken');
-    console.log(formData)
     fetch('http://127.0.0.1:8000/login', {
         method: 'POST',
         headers: {
@@ -35,7 +34,7 @@ const LoginForm = (props) => {
         })
         .then((data) => {
             console.log('Response from server:', data);
-            props.onToggleForm()
+            props.setLoggedIn(true)
             navigate('/')
         })
         .catch((error) => {

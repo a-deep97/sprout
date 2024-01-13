@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import LoginForm from './forms/login';
 import SignupForm from './forms/signup';
 
-const AuthPage = () => {
+const AuthPage = (props) => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const handleAuthenticate = (userData) => {
@@ -13,17 +13,16 @@ const AuthPage = () => {
     console.log('Authentication data:', userData);
   };
 
-  const handleToggleForm = () => {
+  const handleToggleForm = (props) => {
     setIsSignUp(!isSignUp);
   };
-
   return (
     <div className='auth-page'>
         <div className="auth-page-container">
           {isSignUp ? (
             <SignupForm onToggleForm={handleToggleForm} />
             ) : (
-            <LoginForm onToggleForm={handleToggleForm} />
+            <LoginForm onToggleForm={handleToggleForm} setLoggedIn = {props.setLoggedIn} />
           )}
         </div>
     </div>

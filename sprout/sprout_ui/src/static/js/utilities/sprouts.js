@@ -1,3 +1,4 @@
+import '../../css/sprouts.css';
 import React, { useState, useEffect } from 'react';
 import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';

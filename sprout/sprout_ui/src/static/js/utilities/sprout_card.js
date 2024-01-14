@@ -3,7 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
-
+import ProfileIcon from '../utilities/profile_icon';
 const SproutCard = (props) => {
 
     const navigate = useNavigate();
@@ -12,13 +12,13 @@ const SproutCard = (props) => {
     const [dislikes,setDislike] = useState(null);
     const [title,setTitle] = useState(null);
     const [content,setContent] = useState(null);
-    const [author,setAuthor] = useState(null);
+    const [authorName,setAuthorName] = useState(null);
     const [createDate,setCreateDate] = useState(null);
     const [createTime,setCreateTime] = useState(null);
     useEffect(() => {
         setSproutID(props.sprout_id);
         setTitle(props.title);
-        setAuthor(props.author);
+        setAuthorName(props.author_name);
         setContent(props.content);
         setCreateDate(props.create_date);
         setCreateTime(props.create_time);
@@ -43,7 +43,6 @@ const SproutCard = (props) => {
             })
             .then((data) => {
                 console.log('Response from server:', data);
-                debugger
                 setLike(likes+data['likes_changed']);
                 setDislike(dislikes+data['dislikes_changed']);
             })
@@ -69,6 +68,10 @@ const SproutCard = (props) => {
      return (
         <div className="card-body" onClick={() => handleCardClick(sproutID)} >
             <div className="content-container">
+                <div className="props.author-info mt-3 d-flex align-items-center">
+                    <ProfileIcon/>
+                    <p className="text-muted ml-2 mb-0">{authorName}</p>
+                </div>
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text"><div dangerouslySetInnerHTML={{ __html: content }}/></p>
             </div>
@@ -83,10 +86,6 @@ const SproutCard = (props) => {
                     </button>
                     <span className="text-muted ml-2">{dislikes}</span>
                 </div>
-            </div>
-            <div className="author-info mt-3 d-flex align-items-center">
-                <img src="profile.jpg" className="rounded author-img" alt="Author Profile" />
-                <p className="text-muted ml-2 mb-0">{author}</p>
             </div>
             <div className="date-time-container mt-2 d-flex justify-content-end">
                 <small className="text-muted">{createDate}</small>

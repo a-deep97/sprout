@@ -2,6 +2,7 @@ import '../../css/sprout-view.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation , useNavigate } from 'react-router-dom';
+import ProfileIcon from './profile_icon';
 
 const SproutView = (props) => {
 
@@ -9,11 +10,11 @@ const SproutView = (props) => {
 
   return (
     <div className="sprout-detail-view">
-      <h2 className="sprout-props.title">{props.sproutData.title}</h2>
       <div className="props.author-info mt-3 d-flex align-items-center">
-          <img src="../../media/profile.png" className="rounded props.author-img" alt="props.author Profile" />
-          <p className="text-muted ml-2 mb-0">{props.sproutData.author_id}</p>
+        <ProfileIcon/>
+        <p className="text-muted ml-2 mb-0">{props.sproutData.author_name}</p>
       </div>
+      <h2 className="sprout-props.title">{props.sproutData.title}</h2>
       <p className="sprout-props.content"><div dangerouslySetInnerHTML={{ __html: props.sproutData.content }}/></p>
       <div className="thumb-icons-container d-flex">
                 <button type="button" className="btn btn-outline-primary btn-sm">

@@ -8,12 +8,12 @@ from sproutApp.DB.author_model import AuthorModel
 from email_validator import validate_email, EmailNotValidError
 from django.core.mail import send_mail
 
-class AuthorUtil():
+class AuthorUtils():
 
     @staticmethod
     def signup_author(**data):
         
-        if not AuthorUtil.validate_signup_email(data.get('email')):
+        if not AuthorUtils.validate_signup_email(data.get('email')):
             raise ValueError("Email address is already in use. Please choose a different one.")
         
         password=data.get('password')
@@ -51,6 +51,13 @@ class AuthorUtil():
         author=AuthorModel().login_user(email,password_hash.decode('utf-8'))
         return author
 
+    @staticmethod
+    def get_author_name_from_id(author_id:str):
+        res = AuthorModel().get_author_name('author_id',author_id)
+        if res:
+            return f"{res[0]} {res[1]}"
+        return 'Stranger'
+ 
     @staticmethod
     def validate_signup_email(email):
         """

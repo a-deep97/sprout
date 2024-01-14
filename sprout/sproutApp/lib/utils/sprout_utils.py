@@ -2,7 +2,7 @@
 from datetime import datetime
 from sproutApp.DB.sprout_model import SproutModel
 from sproutApp.lib.uid import generate_uid4
-
+from sproutApp.lib.utils.author_utils import AuthorUtils
 
 class SproutUtils():
     
@@ -34,6 +34,7 @@ class SproutUtils():
             for each in res:
                 sprouts.append({
                     'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(author_id),
                     'title': each[1],
                     'content': each[2],
                     'create_date':each[6],
@@ -52,6 +53,7 @@ class SproutUtils():
             for each in res:
                 sprouts.append({
                     'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(author_id),
                     'title': each[1],
                     'content': each[2],
                     'create_date':each[6],
@@ -66,8 +68,10 @@ class SproutUtils():
         res= SproutModel().get_sprout_post_data(sprout_id)
         sprout_data = None
         if res:
+            author_name= AuthorUtils.get_author_name_from_id(res[3])
             sprout_data = {
                     'sprout_id' :res[0],
+                    'author_name': author_name,
                     'title': res[1],
                     'content': res[2],
                     'create_date':res[6],

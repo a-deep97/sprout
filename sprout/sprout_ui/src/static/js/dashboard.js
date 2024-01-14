@@ -13,9 +13,7 @@ const Dashboard = () => {
         <LeftPanel/>  
         <div className="main-container">
             <Logo/>
-            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-               <Sprouts user_posts = {true}/>
-            </main>
+            <Sprouts user_posts = {true}/>
         </div>
         <RightPanel/>
     </div>

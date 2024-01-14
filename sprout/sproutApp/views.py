@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from django.views.decorators.csrf import csrf_exempt
 from sproutApp.lib.utils.author_action_utils import AuthorActionUtils
 from sproutApp.lib.utils.sprout_utils import SproutUtils
-from sproutApp.lib.utils.author_utils import AuthorUtil
+from sproutApp.lib.utils.author_utils import AuthorUtils
 from django.contrib.auth import logout
 @csrf_exempt  
 @api_view(['GET','POST'])
@@ -11,7 +11,7 @@ def signupAuthor(request):
     if request.method == 'POST':
         data=request.data
         try:
-            author=AuthorUtil.signup_author(**data)
+            author=AuthorUtils.signup_author(**data)
             return Response(author)
         except Exception as exc:
             return Response({'error': f'Could not register user {str(exc)}'}, status=500)
@@ -21,7 +21,7 @@ def signupAuthor(request):
 def loginAuthor(request):
     if request.method == 'POST':
         data = request.data
-        user=AuthorUtil.login_author(**data)
+        user=AuthorUtils.login_author(**data)
         if user:
 
             request.session['author_id'] = user['author_id']
@@ -87,6 +87,7 @@ def getHomePosts(request):
 
 @api_view(['GET'])
 def getDashboardPosts(request):
+    
     author_id = request.session['author_id']
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)

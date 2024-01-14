@@ -48,7 +48,7 @@ function App() {
         <Route path='/home' element={LoggedIn ? <HomePage /> : <AuthPage setLoggedIn={setLoggedIn} />} />
         <Route path='/sprout/create' element={LoggedIn ? <CreateSprout /> : <AuthPage setLoggedIn={setLoggedIn} />} />
         <Route path='/sprout/:sprout_id' element={LoggedIn ? <Sprout /> : <AuthPage setLoggedIn={setLoggedIn} />} />
-        <Route path='/dashboard' element={LoggedIn ? <Sprout /> : <AuthPage setLoggedIn={setLoggedIn} />} />
+        <Route path='/dashboard' element={LoggedIn ? <Dashboard /> : <AuthPage setLoggedIn={setLoggedIn} />} />
       </Routes>
     </BrowserRouter>
   );

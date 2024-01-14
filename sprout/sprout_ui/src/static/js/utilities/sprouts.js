@@ -9,13 +9,14 @@ function Sprouts({user_posts}){
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchPosts = (user_posts) => {
+        const fetchPosts = () => {
             let url=null
             if(user_posts==true){
                 url=`http://127.0.0.1:8000/dashboard/sprouts`;
             }else{
                 url=`http://127.0.0.1:8000/home/sprouts`;
             }
+            console.log(url)
             const csrfToken = getCookie('csrftoken');
             fetch(url, {
                 method: 'GET',
@@ -44,9 +45,9 @@ function Sprouts({user_posts}){
         return postList.map((post) => (
           <SproutCard
             sprout_id={post.sprout_id}
+            author_name={post.author_name}
             title={post.title}
             content={post.content}
-            author={post.author}
             create_date={post.create_date}
             create_time={post.create_time}
             likes={post.likes}

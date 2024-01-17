@@ -6,7 +6,6 @@ import LogoutButton from '../buttons/logout_button';
 const RightPanel = () => {
   return (
     <aside className="right-sidebar">
-      <LogoutButton/>
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">

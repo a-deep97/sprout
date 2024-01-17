@@ -5,7 +5,7 @@ import {React, useEffect, useState} from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel';
 import Sprouts from './utilities/sprouts';
-import Logo from './utilities/logo';
+import QuickPost from './forms/quick_post';
 import CreateSproutButton from './buttons/create_sprout_button';
 
 const HomePage = () => {
@@ -13,10 +13,9 @@ const HomePage = () => {
     <div className='page-body'>
         <LeftPanel/>  
         <div className="main-container">
-            <Logo/>
-            <div className='create-section'><CreateSproutButton/></div>
+            <QuickPost/>
             <div className='home-posts'>
-              <Sprouts user_posts = {false}/>
+              <Sprouts/>
             </div>
         </div>
         <RightPanel/>

@@ -24,12 +24,13 @@ class SproutUtils():
         sprout = SproutModel()
         sprout.initiate(**params)
         sprout.create_sprout_post()
+        return params.get('params')
 
     @staticmethod
     def get_home_posts(author_id:str):
         # TODO: implement algorithm to fetch and sort relavantposts
         sprouts=[]
-        res = SproutModel().get_posts(author_id)
+        res = SproutModel().get_user_posts(author_id)
         if res:
             for each in res:
                 sprouts.append({
@@ -46,7 +47,7 @@ class SproutUtils():
     @staticmethod
     def get_user_posts(author_id):
         sprouts =[]
-        res= SproutModel().get_posts(author_id)
+        res= SproutModel().get_user_posts(author_id)
         if res:
             for each in res:
                 sprouts.append({

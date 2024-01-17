@@ -60,10 +60,10 @@ def createSprout(request):
             return Response({'error':'Authentication failure'},status=401)
         
         data={
-            'title': request.data.get('title'),
+            'title': request.data.get('title',''),
             'content' : request.data.get('content'),
             'author_id' : author_id,
-            'draft' : request.data.get('draft')
+            'draft' : request.data.get('draft',False)
         }
         sprout_id=SproutUtils.create_sprout(**data)
     return Response({'sprout_id':sprout_id})

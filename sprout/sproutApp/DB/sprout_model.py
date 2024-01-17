@@ -32,13 +32,14 @@ class SproutModel(BaseModel):
         """
         data = self.read(query,params)
         return data
-    def get_posts(self,author_id:str):
+    def get_user_posts(self,author_id:str):
         params=[
             author_id
         ]
         query=f"""
         SELECT * FROM {self.table}
         WHERE author_id=%s
+        ORDER BY create_date DESC , create_time DESC
         """
         return self.read_all(query,params)
 

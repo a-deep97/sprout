@@ -3,6 +3,8 @@ import '../../css/logout-button.css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const LogoutButton = () => {
 
@@ -34,7 +36,7 @@ const LogoutButton = () => {
         });
     }
     return (
-        <button type="button" className='logout-btn' onClick={handleLogout}>sign out</button>
+        <button type="button" className='logout-btn' onClick={handleLogout}>sign out &nbsp;&nbsp;<FontAwesomeIcon icon={faSignOutAlt} /></button>
      );
 };
 

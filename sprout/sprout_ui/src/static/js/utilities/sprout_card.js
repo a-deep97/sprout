@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
 import ProfileIcon from '../utilities/profile_icon';
+
 const SproutCard = (props) => {
 
     const navigate = useNavigate();

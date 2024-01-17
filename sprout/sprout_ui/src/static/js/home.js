@@ -1,10 +1,11 @@
 
 import '../css/page-body.css';
-import React from 'react';
+import '../css/home.css';
+import {React, useEffect, useState} from 'react';
 import LeftPanel from './utilities/left_panel';
-import RightPanel from './utilities/right_panel'
-import PostCard from './utilities/sprout_card';
-import Logo from './utilities/logo';
+import RightPanel from './utilities/right_panel';
+import Sprouts from './utilities/sprouts';
+import QuickPost from './forms/quick_post';
 import CreateSproutButton from './buttons/create_sprout_button';
 
 const HomePage = () => {
@@ -12,11 +13,10 @@ const HomePage = () => {
     <div className='page-body'>
         <LeftPanel/>  
         <div className="main-container">
-            <Logo/>
-            <div className='create-section'><CreateSproutButton/></div>
-            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <PostCard/>
-            </main>
+            <QuickPost/>
+            <div className='home-posts'>
+              <Sprouts/>
+            </div>
         </div>
         <RightPanel/>
     </div>

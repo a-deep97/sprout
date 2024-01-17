@@ -1,0 +1,9 @@
+.quick_post {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.form-buttons{
+    margin: 10px;
+}

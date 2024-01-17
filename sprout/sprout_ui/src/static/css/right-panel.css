@@ -4,15 +4,21 @@ body, h1, h2, h3, p {
     padding: 0;
   }
   
-  .sidebar {
+  .right-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
     background-color: #d6eaf8; 
     color: #333;
-    width: 20vw; 
-    padding: 15px;
+    width: 500px;
   }
   
   .sidebar-sticky {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 30px;
   }
   
   .nav.flex-column {

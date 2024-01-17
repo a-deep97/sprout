@@ -1,10 +1,11 @@
 
 import '../../css/right-panel.css';
 import React from 'react';
+import LogoutButton from '../buttons/logout_button';
 
 const RightPanel = () => {
   return (
-    <aside className="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+    <aside className="right-sidebar">
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">

@@ -32,13 +32,14 @@ class SproutModel(BaseModel):
         """
         data = self.read(query,params)
         return data
-    def get_dashboard_sprouts(self,author_id:str):
+    def get_user_posts(self,author_id:str):
         params=[
             author_id
         ]
         query=f"""
         SELECT * FROM {self.table}
         WHERE author_id=%s
+        ORDER BY create_date DESC , create_time DESC
         """
         return self.read_all(query,params)
 
@@ -65,3 +66,38 @@ class SproutModel(BaseModel):
     def delete_sprout_post(self, post_id: int) -> None:
         pass
 
+    def increase_like_count(self,sprout_id:str):
+        params=[sprout_id]
+        query= f"""
+        UPDATE {self.table}
+        SET likes = likes + 1
+        WHERE sprout_id = %s
+        """
+        self.update(query,params)
+    
+    def decrease_like_count(self,sprout_id:str):
+        params=[sprout_id]
+        query= f"""
+        UPDATE {self.table}
+        SET likes = likes - 1
+        WHERE sprout_id = %s
+        """
+        self.update(query,params)
+    
+    def increase_dislike_count(self,sprout_id:str):
+        params=[sprout_id]
+        query = f"""
+        UPDATE {self.table}
+        SET dislikes= dislikes + 1
+        WHERE sprout_id = %s
+        """
+        self.update(query,params)
+
+    def decrease_dislike_count(self,sprout_id:str):
+        params=[sprout_id]
+        query= f"""
+        UPDATE {self.table}
+        SET dislikes = dislikes - 1
+        WHERE sprout_id = %s
+        """
+        self.update(query,params)

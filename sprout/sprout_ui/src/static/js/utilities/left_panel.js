@@ -1,47 +1,53 @@
 
-import { useNavigate } from 'react-router-dom';
 import '../../css/left-panel.css';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import Avatar from './avatar';
+import LogoutButton from '../buttons/logout_button';
 const LeftPanel = () => {
 
   const navigate = useNavigate()
   const handleHomeLink = () => {
     navigate('/home')
   }
-  const handleDashboardLink = () =>{
+  const handleDashboardLink = () => {
     navigate('/dashboard')
   }
+  const handlePostLink = () => {
+    navigate('/sprout/create')
+  }
   return (
-    <aside className="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-      <div className="sidebar-sticky">
+    <aside className="left-panel">
+      <div className='logo-section'></div>
+      <div className='profile-section'>
+        <Avatar/>
+        <div className='user-info'>
+          <div className='user-name'>Aman Deep</div>
+          <hr className='custom-hr'/>
+        </div>
+      </div>
+      <div className="sidebar-links">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <a className="nav-link active" onClick={handleHomeLink}>
+            <a className="nav-link active" onClick={() =>handleHomeLink()}>
                 Home
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" onClick={handleDashboardLink}>
+            <a className="nav-link" onClick={() =>handleDashboardLink()}>
               Dashboard
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Categories
-            </a>
-          </li>
-          {/* Add more rows for different functions */}
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Tags
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Users
+            <a className="nav-link active" onClick={() => handlePostLink()}>
+                Create post
             </a>
           </li>
         </ul>
+      </div>
+      <div className='extra'></div>
+      <div className='logout-section'>
+        <LogoutButton/>
       </div>
     </aside>
   );

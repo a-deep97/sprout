@@ -10,21 +10,12 @@ body, h1, h2, h3, p {
     justify-content: center;
     height: 100vh;
     width: 100%;
-    margin-top: 20px;;
   }
   .main-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 60vw;
-  }
-  .create-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 10px;
-    height: 50px;
     width: 100%;
+    height: 100vH;
   }

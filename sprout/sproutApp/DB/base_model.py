@@ -34,6 +34,7 @@ class BaseModel(object):
         with connection.cursor() as cursor:
             cursor.execute(query,params)
 
-    def delete(self):
-        # TODO
-        return None
+    def delete(self,query:str,params:List):
+        with connection.cursor() as cursor:
+            cursor.execute(query,params)
+        

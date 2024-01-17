@@ -2,6 +2,7 @@
 import '../../css/left-panel.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
+import Avatar from './avatar';
 const LeftPanel = () => {
 
   const navigate = useNavigate()
@@ -11,15 +12,11 @@ const LeftPanel = () => {
   const handleDashboardLink = () =>{
     navigate('/dashboard')
   }
-  const defaultProfilePicture = require('../../media/avatar.png');
   return (
     <aside className="left-panel">
       <div className='logo-section'></div>
       <div className='profile-section'>
-        <img className='avatar' 
-          src={defaultProfilePicture}
-          alt='Profile Picture'
-        />
+        <Avatar/>
         <div className='user-info'>
           <div className='user-name'>Aman Deep</div>
           <hr className='custom-hr'/>

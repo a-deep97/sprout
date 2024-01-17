@@ -11,6 +11,7 @@ import Dashboard from './static/js/dashboard';
 import AuthCheck from './static/js/utilities/AuthCheck';
 import { useEffect, useState } from 'react';
 import getCookie from './static/js/lib/authentication';
+import Profile from './static/js/profile';
 function App() {
   
   const [LoggedIn,setLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
         <Route path='/sprout/create' element={LoggedIn ? <CreateSprout /> : <AuthPage setLoggedIn={setLoggedIn} />} />
         <Route path='/sprout/:sprout_id' element={LoggedIn ? <Sprout /> : <AuthPage setLoggedIn={setLoggedIn} />} />
         <Route path='/dashboard' element={LoggedIn ? <Dashboard /> : <AuthPage setLoggedIn={setLoggedIn} />} />
+        <Route path='/profile' element={LoggedIn ? <Profile /> : <AuthPage setLoggedIn={setLoggedIn} />} />
       </Routes>
     </BrowserRouter>
   );

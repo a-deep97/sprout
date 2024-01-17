@@ -1,5 +1,6 @@
 
 import '../css/page-body.css';
+import '../css/home.css';
 import {React, useEffect, useState} from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel';
@@ -14,7 +15,9 @@ const HomePage = () => {
         <div className="main-container">
             <Logo/>
             <div className='create-section'><CreateSproutButton/></div>
-            <Sprouts user_posts = {false}/>
+            <div className='home-posts'>
+              <Sprouts user_posts = {false}/>
+            </div>
         </div>
         <RightPanel/>
     </div>

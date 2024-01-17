@@ -19,12 +19,3 @@ body, h1, h2, h3, p {
     width: 100%;
     height: 100vH;
   }
-  .create-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 10px;
-    height: 50px;
-    width: 100%;
-  }

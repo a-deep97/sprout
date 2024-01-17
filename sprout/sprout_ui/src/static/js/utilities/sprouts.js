@@ -4,19 +4,19 @@ import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
 
-function Sprouts({user_posts}){
+function Sprouts({author_id}){
     const [posts, setPosts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-            if(user_posts==true){
-                url=`http://127.0.0.1:8000/dashboard/sprouts`;
-            }else{
+            if(author_id){
+                url=`http://127.0.0.1:8000/profile/posts?author_id=${author_id}`
+            }
+            else{
                 url=`http://127.0.0.1:8000/home/sprouts`;
             }
-            console.log(url)
             const csrfToken = getCookie('csrftoken');
             fetch(url, {
                 method: 'GET',

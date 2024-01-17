@@ -40,15 +40,6 @@ def logoutAuthor(request):
     
     if request.method == 'POST':
         logout(request)
-        """
-        request.session['author_id'] = None
-        request.session['email'] = None
-        request.session['firstname'] = None
-        request.session['lastname'] = None
-        request.session['is_authenticated'] = False
-        request.session.flush()
-        response = Response({'message': 'Successfully logged out'})
-        """
         response = Response({'message': 'Successfully logged out'})
         response.delete_cookie('sessionid')
         return response
@@ -83,6 +74,17 @@ def getHomePosts(request):
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)
     data = SproutUtils.get_home_posts(author_id)
+    return Response(data)
+
+@api_view(['GET'])
+def getProfilePosts(request):
+    author_id= request.GET.get('author_id')
+    data=None
+    if author_id=='self':
+        author_id=request.session.get('author_id')
+        data = SproutUtils.get_user_posts(author_id)
+    else:
+        data = SproutUtils.get_user_posts(author_id)
     return Response(data)
 
 @api_view(['GET'])

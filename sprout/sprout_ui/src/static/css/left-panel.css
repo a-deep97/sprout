@@ -22,12 +22,6 @@ body, h1, h2, h3, p {
     width: 200px;
     height: 200px;
   }
-  .avatar{
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-    border-radius: 50%;
-  }  
   .user-info {
     display: flex;
     flex-direction: column;

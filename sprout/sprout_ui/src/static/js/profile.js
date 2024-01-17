@@ -5,17 +5,17 @@ import LeftPanel from './utilities/left_panel';
 import RightPanel from './utilities/right_panel';
 import ProfileContainer from './utilities/profile_container';
 
-const Dashboard = () => {
+const Profile = () => {
 
   return (
     <div className='page-body'>
         <LeftPanel/>  
         <div className="main-container">
-            <ProfileContainer author_id= {'self'}/>
+            <ProfileContainer/>
         </div>
         <RightPanel/>
     </div>
   );
 };
 
-export default Dashboard;
+export default Profile;

@@ -5,11 +5,15 @@ import SproutCard from './sprout_card';
 
 const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [posts,setPosts] = useState([]);
   const handleSearch =  (results) => {
     setSearchResults(results)
+    createSproutCards(results)
   }
   const createSproutCards = (postList) => {
-    const cards = postList.map((post) => (
+
+      setPosts([])
+      const cards = postList.map((post) => (
       <SproutCard
         sprout_id={post.sprout_id}
         author_name={post.author_name}
@@ -21,15 +25,15 @@ const Search = () => {
         dislikes={post.dislikes}
       />
     ));
-    return cards
+    setPosts(cards)
+    
   };
   return (
     <div className='search'>
       <SearchBar setSearchResults= {handleSearch}/>
       <div className='search-result'>
-        {createSproutCards(searchResults)}
+        {posts}
       </div>
-      
     </div>
   );
 };

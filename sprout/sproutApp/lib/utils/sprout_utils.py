@@ -95,3 +95,22 @@ class SproutUtils():
     @staticmethod
     def decrease_dislike_count(sprout_id):
         SproutModel().decrease_dislike_count(sprout_id)
+    
+    @staticmethod
+    def search_posts(keyword):
+        res=SproutModel().search_posts(keyword)
+        posts=[]
+        if res:
+            for each in res:
+                posts.append({
+                    'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(each[3]),
+                    'title': each[1],
+                    'content': each[2],
+                    'create_date':each[6],
+                    'create_time':each[7],
+                    'likes':each[8],
+                    'dislikes':each[9]
+                })
+        print(posts)
+        return posts

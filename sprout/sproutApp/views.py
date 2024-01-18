@@ -121,3 +121,15 @@ def dislikeSproutPost(request):
         return Response({'error':'Authentication failure'},status=401)
     res=AuthorActionUtils.dislike_sprout_post(author_id,request.GET.get('sprout_id'))
     return Response(res)
+
+@api_view(['GET','POST'])
+def getPostSearchResults(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    result=[]
+    keyword = request.data.get('keyword')
+    if not keyword:
+        return Response(None)
+    res = SproutUtils.search_posts(keyword)
+    return Response(res)

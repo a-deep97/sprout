@@ -60,6 +60,18 @@ class SproutModel(BaseModel):
         """
         return self.insert(query, params)
 
+    def search_posts(self,keyword):
+        params = [f'%{keyword}%', f'%{keyword}%']
+        query = f"""
+            SELECT *
+            FROM {self.table}
+            WHERE
+                title LIKE %s OR
+                content LIKE %s
+        """
+
+        return self.read_all(query,params)
+    
     def update_sprout_post(self, post_id: int, title: str, content: str) -> None:
         pass
 

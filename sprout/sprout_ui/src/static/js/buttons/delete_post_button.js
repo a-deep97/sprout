@@ -7,7 +7,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const PostDeleteButton = (props) => {
     const handleDelete = (e) => {
         e.stopPropagation()
-        const url=`http://127.0.0.1:8000/delete/post` 
+        const url=`http://127.0.0.1:8000/post/delete` 
         const csrfToken = getCookie('csrftoken');
         fetch(url, {
             method: 'POST',

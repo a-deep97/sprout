@@ -28,6 +28,7 @@ class AuthorActionModel(BaseModel):
             if e.args[0] == 1062:
                 raise DuplicateDBEntryError
             raise e
+        return True
 
     def remove_action(self,author_id,sprout_id, action_type):
         params=[
@@ -43,6 +44,7 @@ class AuthorActionModel(BaseModel):
             action_type = %s
         """
         self.delete(query,params)
+        return True
 
     def actions_exists(self,author_id,sprout_id,action_type):
         params=[
@@ -57,4 +59,7 @@ class AuthorActionModel(BaseModel):
             sprout_id = %s AND
             action_type = %s
         """
-        return self.read(query,params)
+        res =  self.read(query,params)
+        if res[0] >0:
+            return True
+        return False

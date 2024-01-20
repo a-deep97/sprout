@@ -66,6 +66,10 @@
   justify-content: flex-end;
   align-items: center;
 }
+.action-container > * {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .author-info {
     display: flex;
     flex-direction: row;

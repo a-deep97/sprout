@@ -60,6 +60,7 @@ function Sprouts({author_id}){
             create_time={post.create_time}
             likes={post.likes}
             dislikes={post.dislikes}
+            is_saved = {post.is_saved}
             handleDelete = {handleDelete}
           />
         ));

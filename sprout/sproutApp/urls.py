@@ -16,5 +16,6 @@ urlpatterns = [
     path('profile/posts',views.getProfilePosts),
     path('home/sprouts',views.getHomePosts),
     path('search/posts',views.getPostSearchResults),
-    path('delete/post',views.deletePost)
+    path('post/delete',views.deletePost),
+    path('post/save',views.savePost)
 ]

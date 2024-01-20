@@ -145,3 +145,12 @@ def deletePost(request):
         return Response({'deleted':True})
     
     return Response({'deleted': False})
+
+@api_view(['POST'])
+def savePost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    post_id = request.data.get('postId')
+    res = AuthorActionUtils.save_post(author_id,post_id)
+    return Response({'saved': res})

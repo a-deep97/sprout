@@ -59,6 +59,13 @@
     margin-right: 5px;
   }
 
+.action-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 .author-info {
     display: flex;
     flex-direction: row;

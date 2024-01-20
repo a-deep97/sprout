@@ -112,5 +112,12 @@ class SproutUtils():
                     'likes':each[8],
                     'dislikes':each[9]
                 })
-        print(posts)
         return posts
+    
+    @staticmethod
+    def delete_post(post_id):
+        try:
+            res= SproutModel().delete_post(post_id)
+            return True
+        except:
+            return False

@@ -133,3 +133,15 @@ def getPostSearchResults(request):
         return Response(None)
     res = SproutUtils.search_posts(keyword)
     return Response(res)
+
+@api_view(['POST'])
+def deletePost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    post_id = request.data.get('post_id')
+    res = SproutUtils.delete_post(post_id)
+    if res:
+        return Response({'deleted':True})
+    
+    return Response({'deleted': False})

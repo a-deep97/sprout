@@ -6,8 +6,9 @@ import SproutCard from './sprout_card';
 
 function Sprouts({author_id}){
     const [posts, setPosts] = useState([]);
+    const [somePostDeleted,setSomePostDeleted] = useState([false]);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
@@ -41,6 +42,13 @@ function Sprouts({author_id}){
         }
         fetchPosts()
     },[navigate]);
+
+    const handleDelete = (deletedPostId) => {
+        setSomePostDeleted(true);
+        // TODO : re render not working properly. reloading window for now
+        //setPosts(prevPosts => prevPosts.filter(post => post.sprout_id !== deletedPostId));
+        window.location.reload()
+      };
     const createSproutCards = (postList) => {
         return postList.map((post) => (
           <SproutCard
@@ -52,9 +60,12 @@ function Sprouts({author_id}){
             create_time={post.create_time}
             likes={post.likes}
             dislikes={post.dislikes}
+            handleDelete = {handleDelete}
           />
         ));
       };
+    
+    console.log("rendering",posts)
     return (
         <div className='sprout-list'>
             {createSproutCards(posts)}

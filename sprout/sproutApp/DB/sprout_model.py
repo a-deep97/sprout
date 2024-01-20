@@ -60,6 +60,15 @@ class SproutModel(BaseModel):
         """
         return self.insert(query, params)
 
+    def delete_post(self,post_id:str):
+        params= [post_id]
+        query = f"""
+        DELETE FROM {self.table}
+        WHERE
+        sprout_id = %s
+        """
+        self.delete(query,params)
+
     def search_posts(self,keyword):
         params = [f'%{keyword}%', f'%{keyword}%']
         query = f"""

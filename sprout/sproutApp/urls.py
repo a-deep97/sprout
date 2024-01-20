@@ -13,6 +13,7 @@ urlpatterns = [
     path('sprout/like',views.likeSproutPost),
     path('sprout/dislike',views.dislikeSproutPost),
     path('dashboard/sprouts',views.getDashboardPosts),
+    path('dashboard/saved',views.getDashboardSavedPosts),
     path('profile/posts',views.getProfilePosts),
     path('home/sprouts',views.getHomePosts),
     path('search/posts',views.getPostSearchResults),

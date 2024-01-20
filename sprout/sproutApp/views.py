@@ -97,6 +97,14 @@ def getDashboardPosts(request):
     return Response(data)
 
 @api_view(['GET'])
+def getDashboardSavedPosts(request):
+    author_id = request.session['author_id']
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    data = SproutUtils.get_dashboard_saved_posts(author_id)
+    return Response(data)
+
+@api_view(['GET'])
 def getSproutPostData(request):
     
     author_id=request.session.get('author_id')

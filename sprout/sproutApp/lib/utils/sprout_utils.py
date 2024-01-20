@@ -67,6 +67,26 @@ class SproutUtils():
                 })
         return sprouts
     
+    @staticmethod
+    def get_dashboard_saved_posts(author_id):
+        sprouts = []
+        res= SproutModel().get_saved_posts(author_id)
+        if res:
+            for each in res:
+                is_saved = AuthorActionUtils.did_author_saved(author_id,each[0])
+                sprouts.append({
+                    'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(author_id),
+                    'title': each[1],
+                    'content': each[2],
+                    'create_date':each[6],
+                    'create_time':each[7],
+                    'likes':each[8],
+                    'dislikes':each[9],
+                    'is_saved':is_saved
+                })
+        return sprouts
+    
     @staticmethod 
     def get_sprout_post_data(sprout_id):
         res= SproutModel().get_sprout_post_data(sprout_id)

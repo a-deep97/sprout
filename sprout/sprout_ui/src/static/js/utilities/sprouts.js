@@ -4,7 +4,7 @@ import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
 
-function Sprouts({author_id}){
+function Sprouts({author_id,saved = false}){
     const [posts, setPosts] = useState([]);
     const [somePostDeleted,setSomePostDeleted] = useState([false]);
     const navigate = useNavigate();
@@ -12,7 +12,11 @@ function Sprouts({author_id}){
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-            if(author_id){
+    
+            if(saved){
+                url = `http://127.0.0.1:8000/dashboard/saved`
+            }
+            else if(author_id){
                 url=`http://127.0.0.1:8000/profile/posts?author_id=${author_id}`
             }
             else{
@@ -66,7 +70,6 @@ function Sprouts({author_id}){
         ));
       };
     
-    console.log("rendering",posts)
     return (
         <div className='sprout-list'>
             {createSproutCards(posts)}

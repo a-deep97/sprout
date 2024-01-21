@@ -12,13 +12,18 @@ import AuthCheck from './static/js/utilities/AuthCheck';
 import { useEffect, useState } from 'react';
 import getCookie from './static/js/lib/authentication';
 import Profile from './static/js/profile';
+
+import config from './config';
 function App() {
   
+  const APIdomain = config.APIdomain;
   const [LoggedIn,setLoggedIn] = useState(false);
   useEffect(()=>{
       const checkAuthentication = () =>{
+        debugger
+        const url= `${APIdomain}/authenticate`
         const csrfToken = getCookie('csrftoken');
-        fetch(`http://127.0.0.1:8000/authenticate`, {
+        fetch(url, {
             method: 'GET',
             headers: {
                 'X-CSRFToken': csrfToken,

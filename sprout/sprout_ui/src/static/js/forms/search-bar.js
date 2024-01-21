@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import getCookie from '../lib/authentication';
 
-const SearchBar = ({setSearchResults}) => {
+import config from '../../../config.js';
 
+const SearchBar = ({setSearchResults}) => {
+    const APIdomain = config.APIdomain;
     const [searchTerm,setSearchTerm] = useState(null);
     const fetchPosts = (keyword) => {
-        const url=`http://127.0.0.1:8000/search/posts`
+        const url=`${APIdomain}/search/posts`
         const csrfToken = getCookie('csrftoken');
         fetch(url, {
             method: 'POST',

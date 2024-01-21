@@ -3,24 +3,26 @@ import React, { useState, useEffect } from 'react';
 import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
+import config from '../../../config.js';
 
 function Sprouts({author_id,saved = false}){
+    const APIdomain = config.APIdomain;
     const [posts, setPosts] = useState([]);
     const [somePostDeleted,setSomePostDeleted] = useState([false]);
     const navigate = useNavigate();
-    
+    const domain = 
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-    
+            debugger
             if(saved){
-                url = `http://127.0.0.1:8000/dashboard/saved`
+                url = `${APIdomain}/dashboard/saved`
             }
             else if(author_id){
-                url=`http://127.0.0.1:8000/profile/posts?author_id=${author_id}`
+                url=`${APIdomain}/profile/posts?author_id=${author_id}`
             }
             else{
-                url=`http://127.0.0.1:8000/home/sprouts`;
+                url=`${APIdomain}/home/sprouts`;
             }
             const csrfToken = getCookie('csrftoken');
             fetch(url, {

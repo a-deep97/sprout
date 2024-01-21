@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
 
+import config from '../../../config.js';
+
 const AuthCheck = ({component:Component}) => {
+    const APIdomain = config.APIdomain;
     const [isLoggedIn, setLoggedIn] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const checkAuthenticationStatus = () => {
             const csrfToken = getCookie('csrftoken');
-                fetch(`http://127.0.0.1:8000/authenticate`, {
+                fetch(`${APIdomain}/authenticate`, {
                     method: 'GET',
                     headers: {
                         'X-CSRFToken': csrfToken,

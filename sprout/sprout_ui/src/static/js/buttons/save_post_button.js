@@ -5,12 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faBookmark as faBookmarkSolid } from '@fortawesome/free-solid-svg-icons';
 
+import config from '../../../config.js';
+
 const SavePostButton = (props) => {
+  const APIdomain = config.APIdomain;
   const [isSaved, setIsSaved] = useState(props.isSaved);
 
   const handleSave = (e) => {
     e.stopPropagation();
-    const url = 'http://127.0.0.1:8000/post/save';
+    const url = '${APIdomain}/post/save';
     const csrfToken = getCookie('csrftoken');
     fetch(url, {
       method: 'POST',

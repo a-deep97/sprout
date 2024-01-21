@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import config from '../../../config.js';
+
 const SignupForm = (props) => {
+    const APIdomain = config.APIdomain;
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -21,7 +24,7 @@ const SignupForm = (props) => {
       }
       const csrfToken = getCookie('csrftoken');
       console.log(formData)
-      fetch('http://127.0.0.1:8000/signup', {
+      fetch('${APIdomain}/signup', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',

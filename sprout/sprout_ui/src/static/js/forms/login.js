@@ -2,7 +2,10 @@ import '../../css/login.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
+import config from '../../../config.js';
+
 const LoginForm = (props) => {
+  const APIdomain = config.APIdomain;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate()
@@ -17,7 +20,7 @@ const LoginForm = (props) => {
       "password":password,
     }
     const csrfToken = getCookie('csrftoken');
-    fetch('http://127.0.0.1:8000/login', {
+    fetch('${APIdomain}/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

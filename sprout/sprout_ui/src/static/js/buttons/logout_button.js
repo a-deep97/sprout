@@ -6,12 +6,14 @@ import getCookie from '../lib/authentication';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-const LogoutButton = () => {
+import config from '../../../config.js';
 
+const LogoutButton = () => {
+    const APIdomain = config.APIdomain;
     const navigate = useNavigate()
     const handleLogout = () =>{
         const csrfToken = getCookie('csrftoken');
-        fetch('http://127.0.0.1:8000/logout', {
+        fetch('${APIdomain}/logout', {
             method: 'POST', 
             headers: {
             'Content-Type': 'application/json',

@@ -6,9 +6,12 @@ import RightPanel  from './utilities/right_panel';
 import SproutView from './utilities/sprout_view';
 import Logo from './utilities/logo';
 import { useNavigate, useParams } from 'react-router-dom';
+
 import getCookie from './lib/authentication';
+import config from '../../config.js';
 
 const Sprout = () => {
+  const APIdomain = config.APIdomain;
   const [sproutData, setSproutData] = useState(null);
   const navigate = useNavigate();
   const { sprout_id } = useParams();
@@ -19,7 +22,7 @@ const Sprout = () => {
 
   const getSproutData = () =>{
     const csrfToken = getCookie('csrftoken');
-    fetch(`http://127.0.0.1:8000/sprout?sprout_id=${sprout_id}`, {
+    fetch(`${APIdomain}/sprout?sprout_id=${sprout_id}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',

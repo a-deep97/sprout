@@ -1,3 +1,3 @@
 ## sprout
 
-A blogging web project
+A micro blogging web project

@@ -1,5 +1,6 @@
 
 from datetime import datetime
+from sproutApp.lib.utils.author_action_utils import AuthorActionUtils
 from sproutApp.DB.sprout_model import SproutModel
 from sproutApp.lib.uid import generate_uid4
 from sproutApp.lib.utils.author_utils import AuthorUtils
@@ -33,6 +34,7 @@ class SproutUtils():
         res = SproutModel().get_user_posts(author_id)
         if res:
             for each in res:
+                is_saved = AuthorActionUtils.did_author_saved(author_id,each[0])
                 sprouts.append({
                     'sprout_id' :each[0],
                     'author_name': AuthorUtils.get_author_name_from_id(author_id),
@@ -41,7 +43,8 @@ class SproutUtils():
                     'create_date':each[6],
                     'create_time':each[7],
                     'likes':each[8],
-                    'dislikes':each[9]
+                    'dislikes':each[9],
+                    'is_saved':is_saved
                 })
         return sprouts
     @staticmethod
@@ -50,6 +53,7 @@ class SproutUtils():
         res= SproutModel().get_user_posts(author_id)
         if res:
             for each in res:
+                is_saved = AuthorActionUtils.did_author_saved(author_id,each[0])
                 sprouts.append({
                     'sprout_id' :each[0],
                     'author_name': AuthorUtils.get_author_name_from_id(author_id),
@@ -58,7 +62,28 @@ class SproutUtils():
                     'create_date':each[6],
                     'create_time':each[7],
                     'likes':each[8],
-                    'dislikes':each[9]
+                    'dislikes':each[9],
+                    'is_saved':is_saved
+                })
+        return sprouts
+    
+    @staticmethod
+    def get_dashboard_saved_posts(author_id):
+        sprouts = []
+        res= SproutModel().get_saved_posts(author_id)
+        if res:
+            for each in res:
+                is_saved = AuthorActionUtils.did_author_saved(author_id,each[0])
+                sprouts.append({
+                    'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(author_id),
+                    'title': each[1],
+                    'content': each[2],
+                    'create_date':each[6],
+                    'create_time':each[7],
+                    'likes':each[8],
+                    'dislikes':each[9],
+                    'is_saved':is_saved
                 })
         return sprouts
     
@@ -68,6 +93,7 @@ class SproutUtils():
         sprout_data = None
         if res:
             author_name= AuthorUtils.get_author_name_from_id(res[3])
+            is_saved = AuthorActionUtils.did_author_saved(res[3],sprout_id)
             sprout_data = {
                     'sprout_id' :res[0],
                     'author_name': author_name,
@@ -76,22 +102,35 @@ class SproutUtils():
                     'create_date':res[6],
                     'create_time':res[7],
                     'likes':res[8],
-                    'dislikes':res[9]
+                    'dislikes':res[9],
+                    'is_saved':is_saved
             }
         return sprout_data
-
+  
     @staticmethod
-    def increase_like_count(sprout_id):
-        SproutModel().increase_like_count(sprout_id) 
-
-    @staticmethod 
-    def decrease_like_count(sprout_id):
-        SproutModel().decrease_like_count(sprout_id)
-
-    @staticmethod
-    def increase_dislike_count(sprout_id):
-        SproutModel().increase_dislike_count(sprout_id) 
+    def search_posts(keyword):
+        res=SproutModel().search_posts(keyword)
+        posts=[]
+        if res:
+            for each in res:
+                is_saved = AuthorActionUtils.did_author_saved(each[3],each[0])
+                posts.append({
+                    'sprout_id' :each[0],
+                    'author_name': AuthorUtils.get_author_name_from_id(each[3]),
+                    'title': each[1],
+                    'content': each[2],
+                    'create_date':each[6],
+                    'create_time':each[7],
+                    'likes':each[8],
+                    'dislikes':each[9],
+                    'is_saved':is_saved
+                })
+        return posts
     
     @staticmethod
-    def decrease_dislike_count(sprout_id):
-        SproutModel().decrease_dislike_count(sprout_id)
+    def delete_post(post_id):
+        try:
+            res= SproutModel().delete_post(post_id)
+            return True
+        except:
+            return False

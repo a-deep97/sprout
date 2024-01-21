@@ -1,4 +1,7 @@
 from typing import List
+from sproutApp.lib.constants.action_types import ActionType
+
+from sproutApp.lib.constants.tables import Tables
 from .base_model import BaseModel
 
 class SproutModel(BaseModel):
@@ -60,6 +63,43 @@ class SproutModel(BaseModel):
         """
         return self.insert(query, params)
 
+    def delete_post(self,post_id:str):
+        params= [post_id]
+        query = f"""
+        DELETE FROM {self.table}
+        WHERE
+        sprout_id = %s
+        """
+        self.delete(query,params)
+
+    def search_posts(self,keyword):
+        params = [f'%{keyword}%', f'%{keyword}%']
+        query = f"""
+            SELECT *
+            FROM {self.table}
+            WHERE
+                title LIKE %s OR
+                content LIKE %s
+        """
+
+        return self.read_all(query,params)
+    
+    def get_saved_posts(self,author_id):
+        params = [author_id]
+        query = f"""
+        SELECT {self.table}.*
+            FROM {self.table}
+            INNER JOIN
+                {Tables.AUTHOR_ACTIONS.value}
+                ON {self.table}.sprout_id = {Tables.AUTHOR_ACTIONS.value}.sprout_id
+            WHERE
+                {Tables.AUTHOR_ACTIONS.value}.author_id = %s AND
+                {Tables.AUTHOR_ACTIONS.value}.action_type = '{ActionType.SAVED.name}'
+        """
+        res= self.read_all(query,params)
+        print(res)
+        return res
+    
     def update_sprout_post(self, post_id: int, title: str, content: str) -> None:
         pass
 

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
 import ProfileIcon from '../utilities/profile_icon';
+import PostDeleteButton from '../buttons/delete_post_button'; 
+import SavePostButton from '../buttons/save_post_button';
 
 const SproutCard = (props) => {
 
@@ -66,9 +68,14 @@ const SproutCard = (props) => {
         }
         navigate(`/sprout/${sprout_id}`);
     }
-     return (
+    console.log(props)
+    return (
         <div className="card-body" onClick={() => handleCardClick(sproutID)} >
             <div className="content-container">
+                <div className='action-container'>
+                    <PostDeleteButton className='action-items' postId = {sproutID}  handleDelete = {props.handleDelete}/>
+                    <SavePostButton className='action-items' postId = {sproutID} isSaved ={props.is_saved} />
+                </div>
                 <div className="props.author-info mt-3 d-flex align-items-center">
                     <ProfileIcon/>
                     <p className="text-muted ml-2 mb-0">{authorName}</p>

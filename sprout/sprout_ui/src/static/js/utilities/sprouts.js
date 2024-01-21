@@ -4,14 +4,19 @@ import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
 
-function Sprouts({author_id}){
+function Sprouts({author_id,saved = false}){
     const [posts, setPosts] = useState([]);
+    const [somePostDeleted,setSomePostDeleted] = useState([false]);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-            if(author_id){
+    
+            if(saved){
+                url = `http://127.0.0.1:8000/dashboard/saved`
+            }
+            else if(author_id){
                 url=`http://127.0.0.1:8000/profile/posts?author_id=${author_id}`
             }
             else{
@@ -41,6 +46,13 @@ function Sprouts({author_id}){
         }
         fetchPosts()
     },[navigate]);
+
+    const handleDelete = (deletedPostId) => {
+        setSomePostDeleted(true);
+        // TODO : re render not working properly. reloading window for now
+        //setPosts(prevPosts => prevPosts.filter(post => post.sprout_id !== deletedPostId));
+        window.location.reload()
+      };
     const createSproutCards = (postList) => {
         return postList.map((post) => (
           <SproutCard
@@ -52,9 +64,12 @@ function Sprouts({author_id}){
             create_time={post.create_time}
             likes={post.likes}
             dislikes={post.dislikes}
+            is_saved = {post.is_saved}
+            handleDelete = {handleDelete}
           />
         ));
       };
+    
     return (
         <div className='sprout-list'>
             {createSproutCards(posts)}

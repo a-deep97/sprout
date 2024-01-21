@@ -97,6 +97,14 @@ def getDashboardPosts(request):
     return Response(data)
 
 @api_view(['GET'])
+def getDashboardSavedPosts(request):
+    author_id = request.session['author_id']
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    data = SproutUtils.get_dashboard_saved_posts(author_id)
+    return Response(data)
+
+@api_view(['GET'])
 def getSproutPostData(request):
     
     author_id=request.session.get('author_id')
@@ -121,3 +129,36 @@ def dislikeSproutPost(request):
         return Response({'error':'Authentication failure'},status=401)
     res=AuthorActionUtils.dislike_sprout_post(author_id,request.GET.get('sprout_id'))
     return Response(res)
+
+@api_view(['GET','POST'])
+def getPostSearchResults(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    result=[]
+    keyword = request.data.get('keyword')
+    if not keyword:
+        return Response(None)
+    res = SproutUtils.search_posts(keyword)
+    return Response(res)
+
+@api_view(['POST'])
+def deletePost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    post_id = request.data.get('post_id')
+    res = SproutUtils.delete_post(post_id)
+    if res:
+        return Response({'deleted':True})
+    
+    return Response({'deleted': False})
+
+@api_view(['POST'])
+def savePost(request):
+    author_id= request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    post_id = request.data.get('postId')
+    res = AuthorActionUtils.save_post(author_id,post_id)
+    return Response({'saved': res})

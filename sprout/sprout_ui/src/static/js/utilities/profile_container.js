@@ -1,6 +1,6 @@
 
 import '../../css/profile-container.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useReducer } from 'react';
 import Avatar from './avatar';
 import Sprouts from './sprouts';
 
@@ -14,6 +14,19 @@ const ProfileContainer = (props) => {
         Following:4,
     }
     const [selectedLink,setSelectedLink] = useState(ProfileNavlinks.Posts);
+    const [container,setContainer] = useState([])
+    useEffect(()=>{
+        const createProfileContent = () =>{
+            const content = selectedLink == ProfileNavlinks.Posts ?
+                <Sprouts author_id={props.author_id} />:
+                selectedLink == ProfileNavlinks.Saved ?
+                <Sprouts author_id={props.author_id} saved={true} />:
+                null
+            setContainer(content)
+         }
+        createProfileContent();
+    },[selectedLink]);
+
     const handleNavLinkClick = (link)=>{
         setSelectedLink(link)
     }
@@ -25,24 +38,24 @@ const ProfileContainer = (props) => {
                 </div>
             </div>
             <div className='profile-navbar'>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                <a class="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Posts)}>Posts</a>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid">
+                        <div className="collapse navbar-collapse" id="navbarNav">
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
+                                <a className="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Posts)}>Posts</a>
                                 </li>
-                                <li class="nav-item">
-                                <a class="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.LikedPosts)}>Liked Posts</a>
+                                <li className="nav-item">
+                                <a className="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.LikedPosts)}>Liked Posts</a>
                                 </li>
-                                <li class="nav-item">
-                                <a class="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Saved)}>Saved</a>
+                                <li className="nav-item">
+                                <a className="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Saved)}>Saved</a>
                                 </li>   
-                                <li class="nav-item">
-                                <a class="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Followers)}>Followers</a>
+                                <li className="nav-item">
+                                <a className="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Followers)}>Followers</a>
                                 </li>
-                                <li class="nav-item">
-                                <a class="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Following)}>Following</a>
+                                <li className="nav-item">
+                                <a className="nav-link" aria-current="page" onClick={() => handleNavLinkClick(ProfileNavlinks.Following)}>Following</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,11 +63,7 @@ const ProfileContainer = (props) => {
                 </nav>
             </div>
             <div className='profile-content'>
-                {
-                    selectedLink===ProfileNavlinks.Posts ?
-                        <Sprouts author_id={props.author_id}/>:
-                        null
-                }
+                {container}
             </div>
         </div>
     );

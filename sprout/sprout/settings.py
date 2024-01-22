@@ -94,9 +94,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sprout_db',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'USER': 'sproutdb',
+        'PASSWORD': 'password',
+        'HOST': 'sproutdb.cd2ga4q2cngu.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }

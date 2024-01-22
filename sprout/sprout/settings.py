@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1pc-3rkchkn2@j1*8#*-ae6k2c*a-ind+#fu+32aha0_3!d^)2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -32,6 +32,7 @@ CSRF_COOKIE_SECURE = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+SECURE_BROWSER_XSS_FILTER = True
 
 # Application definition
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -39,7 +40,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_NAME = 'sessionid'
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SAMESITE = None
-SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
+SESSION_COOKIE_SECURE = True  # Set to True if using HTTPS
 SESSION_COOKIE_HTTPONLY = True
 
 INSTALLED_APPS = [
@@ -152,7 +153,11 @@ CORS_ORIGIN_WHITELIST=[
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
+    "http://sproutui.s3-website.ap-south-1.amazonaws.com/"
 ]
+
+# https settings
+SECURE_SSL_REDIRECT = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

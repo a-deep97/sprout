@@ -55,7 +55,7 @@ function Sprouts({author_id,saved = false}){
         window.location.reload()
       };
     const createSproutCards = (postList) => {
-        debugger
+    
         return postList.map((post) => (
           <SproutCard
             sprout_id={post.sprout_id}

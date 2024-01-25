@@ -119,17 +119,13 @@ class SproutUtils():
         if res:
             for each in res:
                 is_saved = AuthorActionUtils.did_author_saved(each[3],each[0])
-                posts.append({
-                    'sprout_id' :each[0],
-                    'author_name': AuthorUtils.get_author_name_from_id(each[3]),
-                    'title': each[1],
-                    'content': each[2],
-                    'create_date':each[6],
-                    'create_time':each[7],
-                    'likes':each[8],
-                    'dislikes':each[9],
-                    'is_saved':is_saved
-                })
+                posts.append(
+                    {
+                        'sprout_id' : each[0],
+                        'content' : each[1] if each[1] else each[2]  
+                    }
+                )
+
         return posts
     
     @staticmethod

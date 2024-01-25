@@ -31,7 +31,6 @@ const SproutCard = (props) => {
         setCreateTime(props.create_time);
         setLike(props.likes);
         setDislike(props.dislikes);
-        debugger
         setUserIsAuthor(props.is_user_author)
     },[])
     const fetchLikeDislike = (url,isLike) =>{

@@ -2,16 +2,15 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    background-color: white;
     align-items: center;
-    width: 100%;
+    width: 95%;
     margin-top: 20px;
+    border-radius: 10px;
+    padding-top: 10px;
 }
-.search-result {
+
+.search-bar {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
+    
 }

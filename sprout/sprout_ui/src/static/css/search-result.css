@@ -1,0 +1,22 @@
+.search-result-body {
+    cursor: pointer;
+    max-height: 72px; /* Adjust the max-height as needed for 3 lines */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Display up to 3 lines */
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.125); /* Add border for contrast */
+    border-radius: 5px;
+    padding: 8px;
+  }
+  
+  .search-result-body:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Hover effect */
+  }
+  
+  .search-result-body p {
+    font-size: 1rem;
+    margin-bottom: 0; /* Remove default margin */
+  }
+  

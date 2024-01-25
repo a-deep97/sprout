@@ -23,6 +23,7 @@
     "quill-emoji": "^0.2.0",
     "quill-image-resize-module": "^3.0.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "react-quill": "^2.0.0",

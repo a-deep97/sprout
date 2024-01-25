@@ -38,7 +38,7 @@ const CreateSproutForm = () => {
         "draft": isDraft
     }
     const csrfToken = getCookie('csrftoken');
-    fetch('${APIdomain}/sprout/create', {
+    fetch(`${APIdomain}/sprout/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

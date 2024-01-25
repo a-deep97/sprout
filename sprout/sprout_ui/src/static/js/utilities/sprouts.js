@@ -14,7 +14,6 @@ function Sprouts({author_id,saved = false}){
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-            debugger
             if(saved){
                 url = `${APIdomain}/dashboard/saved`
             }

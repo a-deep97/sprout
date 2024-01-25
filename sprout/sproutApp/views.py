@@ -90,6 +90,8 @@ def getProfilePosts(request):
 @api_view(['GET'])
 def getDashboardPosts(request):
     
+    import pdb
+    pdb.set_trace()
     author_id = request.session['author_id']
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)

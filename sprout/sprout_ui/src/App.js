@@ -20,7 +20,7 @@ function App() {
   const [LoggedIn,setLoggedIn] = useState(false);
   useEffect(()=>{
       const checkAuthentication = () =>{
-        debugger
+
         const url= `${APIdomain}/authenticate`
         const csrfToken = getCookie('csrftoken');
         fetch(url, {

@@ -24,15 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1pc-3rkchkn2@j1*8#*-ae6k2c*a-ind+#fu+32aha0_3!d^)2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
 CSRF_COOKIE_SECURE = True
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-SECURE_BROWSER_XSS_FILTER = True
+#CORS_ALLOW_CREDENTIALS = True
+#SECURE_BROWSER_XSS_FILTER = True
 
 # Application definition
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -94,9 +93,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'sprout_db',
-        'USER': 'sproutdb',
-        'PASSWORD': 'password',
-        'HOST': 'sproutdb.cd2ga4q2cngu.ap-south-1.rds.amazonaws.com',
+        'USER': 'root',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        #'HOST': 'sproutdb.cd2ga4q2cngu.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
@@ -145,19 +145,22 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-CORS_ALLOW_CREDENTIALS = True
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL=False
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ORIGIN_WHITELIST=[
-    'http://127.0.0.1:3000'    #   allowing frontend source to fetch
+    'http://127.0.0.1:3000',    #   allowing frontend source to fetch
+    'http://localhost:3000'
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://sproutui.s3-website.ap-south-1.amazonaws.com/"
+    'http://127.0.0.1:3000',
+    'http://localhost:3000'
 ]
 
 # https settings
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

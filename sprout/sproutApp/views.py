@@ -113,7 +113,7 @@ def getSproutPostData(request):
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)
     
-    data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'))
+    data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'),author_id)
     return Response(data)
 
 @api_view(['GET'])

@@ -44,7 +44,9 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == each[3] else False,
+                    
                 })
         return sprouts
     @staticmethod
@@ -63,7 +65,8 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True
                 })
         return sprouts
     
@@ -83,12 +86,13 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == each[3] else False,
                 })
         return sprouts
     
     @staticmethod 
-    def get_sprout_post_data(sprout_id):
+    def get_sprout_post_data(sprout_id,author_id):
         res= SproutModel().get_sprout_post_data(sprout_id)
         sprout_data = None
         if res:
@@ -103,7 +107,8 @@ class SproutUtils():
                     'create_time':res[7],
                     'likes':res[8],
                     'dislikes':res[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == res[3] else False,
             }
         return sprout_data
   

@@ -21,6 +21,7 @@ const SproutCard = (props) => {
     const [authorName,setAuthorName] = useState(null);
     const [createDate,setCreateDate] = useState(null);
     const [createTime,setCreateTime] = useState(null);
+    const [userIsAuthor,setUserIsAuthor] = useState(null);
     useEffect(() => {
         setSproutID(props.sprout_id);
         setTitle(props.title);
@@ -30,6 +31,8 @@ const SproutCard = (props) => {
         setCreateTime(props.create_time);
         setLike(props.likes);
         setDislike(props.dislikes);
+        debugger
+        setUserIsAuthor(props.is_user_author)
     },[])
     const fetchLikeDislike = (url,isLike) =>{
         const csrfToken = getCookie('csrftoken');
@@ -76,7 +79,10 @@ const SproutCard = (props) => {
         <div className="card-body" onClick={() => handleCardClick(sproutID)} >
             <div className="content-container">
                 <div className='action-container'>
-                    <PostDeleteButton className='action-items' postId = {sproutID}  handleDelete = {props.handleDelete}/>
+                    { userIsAuthor == true ? 
+                        <PostDeleteButton className='action-items' postId = {sproutID}  handleDelete = {props.handleDelete}/>
+                        : null
+                    }
                     <SavePostButton className='action-items' postId = {sproutID} isSaved ={props.is_saved} />
                 </div>
                 <div className="props.author-info mt-3 d-flex align-items-center">

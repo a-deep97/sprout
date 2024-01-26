@@ -13,7 +13,7 @@ const SavePostButton = (props) => {
 
   const handleSave = (e) => {
     e.stopPropagation();
-    const url = '${APIdomain}/post/save';
+    const url = `${APIdomain}/post/save`;
     const csrfToken = getCookie('csrftoken');
     fetch(url, {
       method: 'POST',

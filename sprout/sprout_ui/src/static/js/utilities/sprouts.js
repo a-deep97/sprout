@@ -3,24 +3,25 @@ import React, { useState, useEffect } from 'react';
 import getCookie from '../lib/authentication';
 import { useNavigate } from 'react-router-dom';
 import SproutCard from './sprout_card';
+import config from '../../../config.js';
 
 function Sprouts({author_id,saved = false}){
+    const APIdomain = config.APIdomain;
     const [posts, setPosts] = useState([]);
     const [somePostDeleted,setSomePostDeleted] = useState([false]);
     const navigate = useNavigate();
-    
+    const domain = 
     useEffect(() => {
         const fetchPosts = () => {
             let url=null
-    
             if(saved){
-                url = `http://127.0.0.1:8000/dashboard/saved`
+                url = `${APIdomain}/dashboard/saved`
             }
             else if(author_id){
-                url=`http://127.0.0.1:8000/profile/posts?author_id=${author_id}`
+                url=`${APIdomain}/profile/posts?author_id=${author_id}`
             }
             else{
-                url=`http://127.0.0.1:8000/home/sprouts`;
+                url=`${APIdomain}/home/sprouts`;
             }
             const csrfToken = getCookie('csrftoken');
             fetch(url, {
@@ -54,6 +55,7 @@ function Sprouts({author_id,saved = false}){
         window.location.reload()
       };
     const createSproutCards = (postList) => {
+    
         return postList.map((post) => (
           <SproutCard
             sprout_id={post.sprout_id}
@@ -65,6 +67,7 @@ function Sprouts({author_id,saved = false}){
             likes={post.likes}
             dislikes={post.dislikes}
             is_saved = {post.is_saved}
+            is_user_author ={post.is_user_author}
             handleDelete = {handleDelete}
           />
         ));

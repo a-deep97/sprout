@@ -4,7 +4,10 @@ import TextEditor from '../utilities/text_editor';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
 
+import config from '../../../config.js';
+
 const QuickPost = () => {
+  const APIdomain = config.APIdomain;
   const [editorValue, setEditorValue] = useState('');
   const navigate = useNavigate();
 
@@ -19,7 +22,7 @@ const QuickPost = () => {
         return
     } 
     const csrfToken = getCookie('csrftoken');
-    fetch('http://127.0.0.1:8000/sprout/create', {
+    fetch(`${APIdomain}/sprout/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

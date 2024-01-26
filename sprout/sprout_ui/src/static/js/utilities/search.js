@@ -1,41 +1,65 @@
 import '../../css/search.css';
 import React, { useState } from 'react';
-import SearchBar from '../forms/search-bar';
-import SproutCard from './sprout_card';
+import SearchResultsList from './search_results_list';
+import getCookie from '../lib/authentication';
+import config from '../../../config';
 
 const Search = () => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [posts,setPosts] = useState([]);
-  const handleSearch =  (results) => {
-    setSearchResults(results)
-    createSproutCards(results)
-  }
-  const createSproutCards = (postList) => {
 
-      setPosts([])
-      const cards = postList.map((post) => (
-      <SproutCard
-        sprout_id={post.sprout_id}
-        author_name={post.author_name}
-        title={post.title}
-        content={post.content}
-        create_date={post.create_date}
-        create_time={post.create_time}
-        likes={post.likes}
-        dislikes={post.dislikes}
-      />
-    ));
-    setPosts(cards)
-    
-  };
-  return (
-    <div className='search'>
-      <SearchBar setSearchResults= {handleSearch}/>
-      <div className='search-result'>
-        {posts}
+  const APIdomain = config.APIdomain;
+  const [searchTerm,setSearchTerm] = useState(null);
+  const [searchResults ,setSearchResults] = useState([]);
+  const fetchPosts = (keyword) => {
+      const url=`${APIdomain}/search/posts`
+      const csrfToken = getCookie('csrftoken');
+      fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify({"keyword": keyword}),
+          credentials : 'include',
+          })
+          .then((response) => {
+              if (!response.ok) {
+              throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then((data) => {
+              console.log("fetched search results:", data)
+              setSearchResults(data); 
+          })
+          .catch((error) => {
+              console.error('There was a problem with the fetch operation:', error);
+              setSearchResults([])
+      });
+    }
+    const handleChange = (keyword) => {
+        setSearchTerm(keyword)
+        fetchPosts(keyword)
+    };
+
+    return (
+        <div className='search'>
+          <div className='search-bar'>
+            <input
+              className="form-control" 
+              id="exampleInput"
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange = {(e) =>{handleChange(e.target.value)}}
+            />
+        </div>
+        {
+          searchResults.length > 0 ?
+          <SearchResultsList search_results={searchResults} />:
+          null
+        }
       </div>
-    </div>
-  );
+    );
 };
 
 export default Search;

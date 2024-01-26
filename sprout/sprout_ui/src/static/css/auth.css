@@ -2,21 +2,27 @@
 
 .auth-page {
   height: 100vh;
+  width: 100wv;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items:flex-start;
-  background-color: #f8f9fa; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items:center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1); 
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .auth-page-container {
-  max-width: 400px;
   display: flex;
-  width: 100%;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  background-color: #ffffff; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 500px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 1); 
+}
+.form-image {
+  height: 500px;
+  width: 700px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 1); 
 }

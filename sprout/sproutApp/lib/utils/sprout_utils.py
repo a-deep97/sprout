@@ -44,7 +44,9 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == each[3] else False,
+                    
                 })
         return sprouts
     @staticmethod
@@ -63,7 +65,8 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True
                 })
         return sprouts
     
@@ -83,12 +86,13 @@ class SproutUtils():
                     'create_time':each[7],
                     'likes':each[8],
                     'dislikes':each[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == each[3] else False,
                 })
         return sprouts
     
     @staticmethod 
-    def get_sprout_post_data(sprout_id):
+    def get_sprout_post_data(sprout_id,author_id):
         res= SproutModel().get_sprout_post_data(sprout_id)
         sprout_data = None
         if res:
@@ -103,7 +107,8 @@ class SproutUtils():
                     'create_time':res[7],
                     'likes':res[8],
                     'dislikes':res[9],
-                    'is_saved':is_saved
+                    'is_saved':is_saved,
+                    'is_user_author': True if author_id == res[3] else False,
             }
         return sprout_data
   
@@ -114,17 +119,13 @@ class SproutUtils():
         if res:
             for each in res:
                 is_saved = AuthorActionUtils.did_author_saved(each[3],each[0])
-                posts.append({
-                    'sprout_id' :each[0],
-                    'author_name': AuthorUtils.get_author_name_from_id(each[3]),
-                    'title': each[1],
-                    'content': each[2],
-                    'create_date':each[6],
-                    'create_time':each[7],
-                    'likes':each[8],
-                    'dislikes':each[9],
-                    'is_saved':is_saved
-                })
+                posts.append(
+                    {
+                        'sprout_id' : each[0],
+                        'content' : each[1] if each[1] else each[2]  
+                    }
+                )
+
         return posts
     
     @staticmethod

@@ -30,8 +30,8 @@ ALLOWED_HOSTS = []
 
 CSRF_COOKIE_SECURE = True
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+#CORS_ALLOW_CREDENTIALS = True
+#SECURE_BROWSER_XSS_FILTER = True
 
 # Application definition
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -39,7 +39,7 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_NAME = 'sessionid'
 SESSION_COOKIE_AGE = 1209600
 SESSION_COOKIE_SAMESITE = None
-SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
+SESSION_COOKIE_SECURE = True  # Set to True if using HTTPS
 SESSION_COOKIE_HTTPONLY = True
 
 INSTALLED_APPS = [
@@ -96,6 +96,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
+        #'HOST': 'sproutdb.cd2ga4q2cngu.ap-south-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
@@ -144,15 +145,22 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-CORS_ALLOW_CREDENTIALS = True
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL=False
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ORIGIN_WHITELIST=[
-    'http://127.0.0.1:3000'    #   allowing frontend source to fetch
+    'http://127.0.0.1:3000',    #   allowing frontend source to fetch
+    'http://localhost:3000'
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
+    'http://127.0.0.1:3000',
+    'http://localhost:3000'
 ]
+
+# https settings
+#SECURE_SSL_REDIRECT = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

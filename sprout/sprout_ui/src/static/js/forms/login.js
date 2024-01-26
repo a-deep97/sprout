@@ -1,10 +1,21 @@
 import '../../css/login.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
+import config from '../../../config.js';
+import { Typography,  
+      FormControlLabel, 
+      Checkbox ,
+      Button, 
+      Box,
+      TextField
+    } from '@mui/material';
+
 const LoginForm = (props) => {
+  const APIdomain = config.APIdomain;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe,setRememberMe] = useState(false);
   const navigate = useNavigate()
   const handleSignupClick = () => {
       props.onToggleForm()
@@ -17,7 +28,7 @@ const LoginForm = (props) => {
       "password":password,
     }
     const csrfToken = getCookie('csrftoken');
-    fetch('http://127.0.0.1:8000/login', {
+    fetch(`${APIdomain}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -48,41 +59,21 @@ const LoginForm = (props) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
   }
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <h2 className="card-title text-center mb-4">Login</h2>
-              {/* Login Form */}
-              <form onSubmit={handleLogin}>
-                <div className="mb-3">
-                  <input type="text" className="form-control" id="email" name="email" placeholder='email' onChange={(e) => setEmail(e.target.value)} required />
-                </div>
-                <div className="mb-3">
-                  <input type="password" className="form-control" id="password" name="password" placeholder='password' onChange={(e) => setPassword(e.target.value)} required />
-                </div>
-                <div className="mb-3 form-check">
-                  <input type="checkbox" className="form-check-input" id="rememberMe" />
-                  <label className="form-check-label" htmlFor="rememberMe">
-                    Remember me
-                  </label>
-                </div>
-                <button type="submit" className="btn btn-primary btn-block mb-3">
-                  Login
-                </button>
-              </form>
-              {/* Signup Link */}
-              <div className="text-center">
-                <p>
-                  Not a member? <a href="#!" onClick={handleSignupClick}>Sign up</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+    
+      <div className="auth-card-body">
+        <Typography variant='h3' align='center' >sign in</Typography>
+        <form onSubmit={handleLogin} className='login-form'>
+          <TextField placeholder='email ...' margin='normal'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
+          <TextField placeholder='password...' margin='small'  type='password' size='small' onChange={(e) => setPassword(e.target.value)} required></TextField>
+          <FormControlLabel style={{'marginTop':'10px'}} control={<Checkbox checked={rememberMe} size='small' onChange={ () => {setRememberMe(!rememberMe)}} />} label="Remember Me"/>
+          <Button variant='contained' style={{'marginTop':'10px'}} type='submit' color='primary'>Sign in</Button>
+        </form>
+        <Box display='flex' alignItems='center' padding='10px'>
+          <Typography marginRight='10px' variant='body'>Not a member yet ?</Typography>
+          <Link onClick={handleSignupClick}>Sign up</Link>
+        </Box>
       </div>
-    </div>
+    
   );
 };
 

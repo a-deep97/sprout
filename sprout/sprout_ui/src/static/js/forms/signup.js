@@ -1,7 +1,17 @@
+
+import '../../css/signup.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Typography,  
+  Button, 
+  Box,
+  TextField,
+  Link,
+} from '@mui/material';
+import config from '../../../config.js';
 
 const SignupForm = (props) => {
+    const APIdomain = config.APIdomain;
     const [firstname, setFirstName] = useState('');
     const [lastname, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -21,7 +31,7 @@ const SignupForm = (props) => {
       }
       const csrfToken = getCookie('csrftoken');
       console.log(formData)
-      fetch('http://127.0.0.1:8000/signup', {
+      fetch(`${APIdomain}/signup`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -63,44 +73,20 @@ const SignupForm = (props) => {
     navigate('/auth')
   }
   return (
-    <div className='signup-container'>
-      <div className="container mt-5 signup-container">
-        <div className="row justify-content-center">
-          <div className="col-md-6">
-            <div className="card">
-              <div className="card-body">
-                <h2 className="card-title text-center mb-4">Sign Up</h2>
-                <form onSubmit={handleSignup}>
-                  <div className="mb-3">
-                    <input type="text" className="form-control" id="firstName" name="firstName" placeholder='First Name' onChange={(e) => setFirstName(e.target.value)} required />
-                  </div>
-                  <div className="mb-3">
-                    <input type="text" className="form-control" id="lastName" name="lastName" placeholder='Last Name' onChange={(e) => setLastName(e.target.value)} required />
-                  </div>
-                  <div className="mb-3">
-                    <input type="email" className="form-control" id="email" name="email" placeholder='Email' onChange={(e) => setEmail(e.target.value)} required />
-                  </div>
-                  <div className="mb-3">
-                    <input type="password" className="form-control" id="password" name="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)} required />
-                  </div>
-                  <div className="mb-3">
-                    <input type="password" className="form-control" id="confirmPassword" name="confirmPassword" placeholder='Confirm Password' onChange={(e) => setConfirmPassword(e.target.value)} required />
-                  </div>
-                  <button type="submit" className="btn btn-primary btn-block mb-3">
-                    Sign Up
-                  </button>
-                </form>
-                {/* Login Link */}
-                <div className="text-center">
-                  <p>
-                    Already have an account? <a href="#!" onClick={handleLoginClick}>Login</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="auth-card-body">
+      <Typography variant='h3' align='center' >sign Up</Typography>
+      <form onSubmit={handleSignup} className='signup-form'>
+        <TextField placeholder='first name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
+        <TextField placeholder='last name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
+        <TextField placeholder='email ...' margin='dense'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
+        <TextField placeholder='password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setPassword(e.target.value)} required></TextField>
+        <TextField placeholder='confirm password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setConfirmPassword(e.target.value)} required></TextField>
+        <Button variant='contained' style={{'marginTop':'10px'}} type='submit' color='primary' size='small'>Sign up</Button>
+      </form>
+      <Box display='flex' alignItems='center' padding='10px'>
+        <Typography marginRight='10px' variant='body'>Already a member ?</Typography>
+        <Link onClick={handleLoginClick}>Sign in</Link>
+      </Box>
     </div>
   );
 };

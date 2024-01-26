@@ -4,7 +4,10 @@ import TextEditor from '../utilities/text_editor';
 import { useNavigate } from 'react-router-dom';
 import getCookie from '../lib/authentication';
 
+import config from '../../../config.js';
+
 const CreateSproutForm = () => {
+  const APIdomain = config.APIdomain;
   const [title,setTitle] = useState('');
   const [editorValue, setEditorValue] = useState('');
   const [isDraft, setIsDraft] = useState(false);
@@ -35,7 +38,7 @@ const CreateSproutForm = () => {
         "draft": isDraft
     }
     const csrfToken = getCookie('csrftoken');
-    fetch('http://127.0.0.1:8000/sprout/create', {
+    fetch(`${APIdomain}/sprout/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

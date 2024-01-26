@@ -1,0 +1,14 @@
+.search_results{
+    display: flex;
+    width: 90%;
+    height: 400px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll;
+}
+.search_result {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}

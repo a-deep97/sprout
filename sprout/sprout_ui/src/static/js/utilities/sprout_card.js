@@ -7,8 +7,11 @@ import ProfileIcon from '../utilities/profile_icon';
 import PostDeleteButton from '../buttons/delete_post_button'; 
 import SavePostButton from '../buttons/save_post_button';
 
+import config from '../../../config.js';
+
 const SproutCard = (props) => {
 
+    const APIdomain = config.APIdomain;
     const navigate = useNavigate();
     const [sproutID,setSproutID] = useState(null);
     const [likes,setLike] = useState(null);
@@ -18,6 +21,7 @@ const SproutCard = (props) => {
     const [authorName,setAuthorName] = useState(null);
     const [createDate,setCreateDate] = useState(null);
     const [createTime,setCreateTime] = useState(null);
+    const [userIsAuthor,setUserIsAuthor] = useState(null);
     useEffect(() => {
         setSproutID(props.sprout_id);
         setTitle(props.title);
@@ -27,6 +31,7 @@ const SproutCard = (props) => {
         setCreateTime(props.create_time);
         setLike(props.likes);
         setDislike(props.dislikes);
+        setUserIsAuthor(props.is_user_author)
     },[])
     const fetchLikeDislike = (url,isLike) =>{
         const csrfToken = getCookie('csrftoken');
@@ -56,11 +61,11 @@ const SproutCard = (props) => {
     }
     const handleLike = (e) => {
         e.stopPropagation();
-        fetchLikeDislike(`http://127.0.0.1:8000/sprout/like?sprout_id=${sproutID}`);
+        fetchLikeDislike(`${APIdomain}/sprout/like?sprout_id=${sproutID}`);
     }
     const handleDislike = (e) => {
         e.stopPropagation();
-        fetchLikeDislike(`http://127.0.0.1:8000/sprout/dislike?sprout_id=${sproutID}`);
+        fetchLikeDislike(`${APIdomain}/sprout/dislike?sprout_id=${sproutID}`);
     }
     const handleCardClick = (sprout_id) => {
         const sprout_id_key={
@@ -73,7 +78,10 @@ const SproutCard = (props) => {
         <div className="card-body" onClick={() => handleCardClick(sproutID)} >
             <div className="content-container">
                 <div className='action-container'>
-                    <PostDeleteButton className='action-items' postId = {sproutID}  handleDelete = {props.handleDelete}/>
+                    { userIsAuthor == true ? 
+                        <PostDeleteButton className='action-items' postId = {sproutID}  handleDelete = {props.handleDelete}/>
+                        : null
+                    }
                     <SavePostButton className='action-items' postId = {sproutID} isSaved ={props.is_saved} />
                 </div>
                 <div className="props.author-info mt-3 d-flex align-items-center">

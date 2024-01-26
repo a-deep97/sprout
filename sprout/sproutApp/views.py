@@ -90,6 +90,8 @@ def getProfilePosts(request):
 @api_view(['GET'])
 def getDashboardPosts(request):
     
+    import pdb
+    pdb.set_trace()
     author_id = request.session['author_id']
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)
@@ -111,7 +113,7 @@ def getSproutPostData(request):
     if not author_id:
         return Response({'error':'Authentication failure'},status=401)
     
-    data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'))
+    data = SproutUtils.get_sprout_post_data(request.GET.get('sprout_id'),author_id)
     return Response(data)
 
 @api_view(['GET'])

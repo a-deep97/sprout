@@ -33,7 +33,7 @@ function ConfirmDialog({ open, onClose, onConfirm, title, message }) {
           </Button>
           <Button onClick={ (e) => {handleConfirm(e)}} color="secondary" autoFocus>
             Confirm
-          </Button>
+          </Button> 
         </DialogActions>
       </Dialog>
     );

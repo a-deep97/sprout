@@ -13,7 +13,7 @@ const LogoutButton = () => {
     const navigate = useNavigate()
     const handleLogout = () =>{
         const csrfToken = getCookie('csrftoken');
-        fetch('${APIdomain}/logout', {
+        fetch(`${APIdomain}/logout`, {
             method: 'POST', 
             headers: {
             'Content-Type': 'application/json',

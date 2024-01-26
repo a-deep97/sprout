@@ -6,7 +6,7 @@ import ConfirmDialog from '../dialogue_box/confirm_box';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import {Snackbar, Alert} from '@mui/material';
 import config from '../../../config.js';
 
 
@@ -37,7 +37,7 @@ const PostDeleteButton = (props) => {
           })
           .then((data) => {
               console.log("deleted following post entity",props.postId)
-              props.handleDelete(props.postId)
+              window.location.reload()
           })
           .catch((error) => {
               console.error('There was a problem with the fetch operation:', error);
@@ -50,16 +50,17 @@ const PostDeleteButton = (props) => {
   }
   return (
     <div>
-      <div className="delete-button"  onClick={(e) => handleDeleteButtonClick(e)}>
-      <FontAwesomeIcon icon={faTrash} className='trash-icon' />
+        <div className="delete-button"  onClick={(e) => handleDeleteButtonClick(e)}>
+            <FontAwesomeIcon icon={faTrash} className='trash-icon' />
+        </div>
+        <ConfirmDialog 
+            open={dialogOpen}
+            onClose={(isOpen) => setDialogOpen(isOpen)}
+            onConfirm = { () => handleDelete()}
+            title = {'Are u sure ?'} 
+            message ={'Are u really sure to delete this post ?'} />
     </div>
-    <ConfirmDialog 
-        open={dialogOpen}
-        onClose={(isOpen) => setDialogOpen(isOpen)}
-        onConfirm = { () => handleDelete()}
-        title = {'Are u sure ?'} 
-        message ={'Are u really sure to delete this post ?'} />
-    </div>
+    
   );
 };
 

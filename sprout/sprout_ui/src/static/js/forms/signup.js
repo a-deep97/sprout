@@ -31,7 +31,7 @@ const SignupForm = (props) => {
       }
       const csrfToken = getCookie('csrftoken');
       console.log(formData)
-      fetch('${APIdomain}/signup', {
+      fetch(`${APIdomain}/signup`, {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -73,22 +73,20 @@ const SignupForm = (props) => {
     navigate('/auth')
   }
   return (
-    <div className="card">
-      <div className="card-body">
+    <div className="auth-card-body">
       <Typography variant='h3' align='center' >sign Up</Typography>
-        <form onSubmit={handleSignup} className='signup-form'>
-          <TextField placeholder='first name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
-          <TextField placeholder='last name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
-          <TextField placeholder='email ...' margin='dense'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
-          <TextField placeholder='password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setPassword(e.target.value)} required></TextField>
-          <TextField placeholder='confirm password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setConfirmPassword(e.target.value)} required></TextField>
-          <Button variant='contained' style={{'marginTop':'10px'}} type='submit' color='primary' size='small'>Sign up</Button>
-        </form>
-        <Box display='flex' alignItems='center' padding='10px'>
-          <Typography marginRight='10px' variant='body'>Already a member ?</Typography>
-          <Link onClick={handleLoginClick}>Sign in</Link>
-        </Box>
-      </div>
+      <form onSubmit={handleSignup} className='signup-form'>
+        <TextField placeholder='first name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
+        <TextField placeholder='last name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
+        <TextField placeholder='email ...' margin='dense'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
+        <TextField placeholder='password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setPassword(e.target.value)} required></TextField>
+        <TextField placeholder='confirm password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setConfirmPassword(e.target.value)} required></TextField>
+        <Button variant='contained' style={{'marginTop':'10px'}} type='submit' color='primary' size='small'>Sign up</Button>
+      </form>
+      <Box display='flex' alignItems='center' padding='10px'>
+        <Typography marginRight='10px' variant='body'>Already a member ?</Typography>
+        <Link onClick={handleLoginClick}>Sign in</Link>
+      </Box>
     </div>
   );
 };

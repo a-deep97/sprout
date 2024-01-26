@@ -28,7 +28,7 @@ const LoginForm = (props) => {
       "password":password,
     }
     const csrfToken = getCookie('csrftoken');
-    fetch('${APIdomain}/login', {
+    fetch(`${APIdomain}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -59,8 +59,8 @@ const LoginForm = (props) => {
     if (parts.length === 2) return parts.pop().split(';').shift();
   }
   return (
-    <div className="card">
-      <div className="card-body">
+    
+      <div className="auth-card-body">
         <Typography variant='h3' align='center' >sign in</Typography>
         <form onSubmit={handleLogin} className='login-form'>
           <TextField placeholder='email ...' margin='normal'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
@@ -73,7 +73,7 @@ const LoginForm = (props) => {
           <Link onClick={handleSignupClick}>Sign up</Link>
         </Box>
       </div>
-    </div>
+    
   );
 };
 

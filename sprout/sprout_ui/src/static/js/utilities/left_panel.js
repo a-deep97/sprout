@@ -1,14 +1,21 @@
 
 import '../../css/left-panel.css';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import {Typography} from '@mui/material';
 
 import Avatar from './avatar';
 import LogoutButton from '../buttons/logout_button';
+
+import config from '../../../config.js';
+import getCookie from '../lib/authentication';
+
+
 const LeftPanel = () => {
 
   const navigate = useNavigate()
+  const [authorInfo ,setAuthorInfo] = useState(null);
+  const APIdomain = config.APIdomain; 
   const handleHomeLink = () => {
     navigate('/home')
   }
@@ -18,13 +25,39 @@ const LeftPanel = () => {
   const handlePostLink = () => {
     navigate('/sprout/create')
   }
+  useEffect(() =>{
+    const fetchAuthorInfo = () =>{
+      const csrfToken = getCookie('csrftoken');
+      fetch(`${APIdomain}/profile/info`, {
+          method: 'GET', 
+          headers: {
+          'X-CSRFToken': csrfToken,
+          },
+          credentials: 'include',
+      })
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error('Failed to get author info');
+          }
+          return response.json();
+      })
+      .then((data) => {
+          console.log('Fetch successful:', data);
+          setAuthorInfo(data);
+      })
+      .catch((error) => {
+          console.error('fetch error:', error.message);
+      });
+    }
+    fetchAuthorInfo();
+  },[]);
   return (
     <aside className="left-panel">
       <div className='logo-section'></div>
       <div className='profile-section'>
         <Avatar/>
         <div className='user-info'>
-          <Typography variant = 'subtitle1' align='center'>Amannnnnnnnnnnnnnnn Deep</Typography>
+          <Typography variant = 'h6' align='center'>{authorInfo && authorInfo.firstname}</Typography>
           <hr className='custom-hr'/>
         </div>
       </div>

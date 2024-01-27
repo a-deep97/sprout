@@ -15,6 +15,7 @@ urlpatterns = [
     path('dashboard/sprouts',views.getDashboardPosts),
     path('dashboard/saved',views.getDashboardSavedPosts),
     path('profile/posts',views.getProfilePosts),
+    path('profile/info',views.getAuthorInfo),
     path('home/sprouts',views.getHomePosts),
     path('search/posts',views.getPostSearchResults),
     path('post/delete',views.deletePost),

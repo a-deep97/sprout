@@ -52,6 +52,17 @@ class AuthorUtils():
         return author
 
     @staticmethod
+    def get_author_info(author_id:str):
+        data= {}
+        res = AuthorModel().get_author_info(author_id)
+        if res:
+            data = {
+                "firstname" : res[0],
+                "lastname" : res[1],
+            }
+        return data
+
+    @staticmethod
     def get_author_name_from_id(author_id:str):
         res = AuthorModel().get_author_name('author_id',author_id)
         if res:

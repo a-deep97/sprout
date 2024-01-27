@@ -59,6 +59,7 @@ class AuthorUtils():
             data = {
                 "firstname" : res[0],
                 "lastname" : res[1],
+                "bio" : res[2]
             }
         return data
 

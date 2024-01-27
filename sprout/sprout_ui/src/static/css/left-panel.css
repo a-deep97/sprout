@@ -9,7 +9,7 @@ body, h1, h2, h3, p {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: black; 
+    background: linear-gradient(180deg, #000000, #444444);
     color: white;
     width: 400px;
   }
@@ -26,8 +26,8 @@ body, h1, h2, h3, p {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 90%;
   }
   .sidebar-links {

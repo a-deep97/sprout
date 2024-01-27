@@ -66,7 +66,7 @@ class AuthorModel(BaseModel):
     def get_author_info(self,author_id):
         params = [author_id]
         query = f"""
-        SELECT firstname, lastname FROM {self.table}
+        SELECT firstname, lastname, bio FROM {self.table}
         WHERE
         author_id = %s
         """

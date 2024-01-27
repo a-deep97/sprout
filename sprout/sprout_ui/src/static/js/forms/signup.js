@@ -77,7 +77,7 @@ const SignupForm = (props) => {
       <Typography variant='h3' align='center' >sign Up</Typography>
       <form onSubmit={handleSignup} className='signup-form'>
         <TextField placeholder='first name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
-        <TextField placeholder='last name ...' margin='dense'  size='small'  align='center' onChange={(e) => setFirstName(e.target.value)} required></TextField>
+        <TextField placeholder='last name ...' margin='dense'  size='small'  align='center' onChange={(e) => setLastName(e.target.value)} required></TextField>
         <TextField placeholder='email ...' margin='dense'  size='small'  align='center' onChange={(e) => setEmail(e.target.value)} required></TextField>
         <TextField placeholder='password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setPassword(e.target.value)} required></TextField>
         <TextField placeholder='confirm password...' margin='dense'  type='password' size='small' align='center' onChange={(e) => setConfirmPassword(e.target.value)} required></TextField>

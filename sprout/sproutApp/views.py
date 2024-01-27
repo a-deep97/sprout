@@ -9,8 +9,6 @@ from django.contrib.auth import logout
 @csrf_exempt  
 @api_view(['GET','POST'])
 def signupAuthor(request):
-    import pdb
-    pdb.set_trace()
     if request.method == 'POST':
         data=request.data
         try:
@@ -88,6 +86,30 @@ def getProfilePosts(request):
         data = SproutUtils.get_user_posts(author_id)
     else:
         data = SproutUtils.get_user_posts(author_id)
+    return Response(data)
+
+@api_view(['GET'])
+def getAuthorInfo(request):
+    author_id = request.session['author_id']
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    data = AuthorUtils.get_author_info(author_id)    
+    return Response(data)
+
+@api_view(['GET','POST'])
+def EditProfileBio(request):
+    print("editing")
+    author_id = request.session.get('author_id')
+    if not author_id:
+        return Response({'error':'Authentication failure'},status=401)
+    data = AuthorUtils.edit_profile_bio(
+        author_id,
+        request.data.get('bio'),
+        request.data.get('twitter'),
+        request.data.get('linkedIn'),
+        request.data.get('facebook'),
+        request.data.get('website')
+        )
     return Response(data)
 
 @api_view(['GET'])

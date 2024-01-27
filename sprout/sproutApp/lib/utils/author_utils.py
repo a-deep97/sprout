@@ -52,6 +52,30 @@ class AuthorUtils():
         return author
 
     @staticmethod
+    def edit_profile_bio(author_id,bio,facebook,linkedin,twitter,website):
+        params=[bio,twitter,linkedin,facebook,website,author_id]
+        AuthorModel().edit_profile_bio(params)
+        return {
+         'bio': bio,
+         'twitter':twitter,
+         'linkedIn' :linkedin,
+         'facebook':facebook,
+         'website' :website
+        }
+
+    @staticmethod
+    def get_author_info(author_id:str):
+        data= {}
+        res = AuthorModel().get_author_info(author_id)
+        if res:
+            data = {
+                "firstname" : res[0],
+                "lastname" : res[1],
+                "bio" : res[2]
+            }
+        return data
+
+    @staticmethod
     def get_author_name_from_id(author_id:str):
         res = AuthorModel().get_author_name('author_id',author_id)
         if res:

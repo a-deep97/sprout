@@ -31,13 +31,13 @@ class SproutUtils():
     def get_home_posts(author_id:str):
         # TODO: implement algorithm to fetch and sort relavantposts
         sprouts=[]
-        res = SproutModel().get_user_posts(author_id)
+        res = SproutModel().get_home_posts()
         if res:
             for each in res:
                 is_saved = AuthorActionUtils.did_author_saved(author_id,each[0])
                 sprouts.append({
                     'sprout_id' :each[0],
-                    'author_name': AuthorUtils.get_author_name_from_id(author_id),
+                    'author_name': AuthorUtils.get_author_name_from_id(each[3]),
                     'title': each[1],
                     'content': each[2],
                     'create_date':each[6],

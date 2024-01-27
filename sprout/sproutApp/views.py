@@ -5,9 +5,12 @@ from sproutApp.lib.utils.author_action_utils import AuthorActionUtils
 from sproutApp.lib.utils.sprout_utils import SproutUtils
 from sproutApp.lib.utils.author_utils import AuthorUtils
 from django.contrib.auth import logout
+
 @csrf_exempt  
 @api_view(['GET','POST'])
 def signupAuthor(request):
+    import pdb
+    pdb.set_trace()
     if request.method == 'POST':
         data=request.data
         try:

@@ -35,6 +35,13 @@ class SproutModel(BaseModel):
         """
         data = self.read(query,params)
         return data
+    
+    def get_home_posts(self):
+        query = f"""
+            SELECT * FROM {self.table}
+        """
+        return self.read_all(query,None)
+
     def get_user_posts(self,author_id:str):
         params=[
             author_id

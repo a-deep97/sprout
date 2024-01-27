@@ -25,9 +25,17 @@ const LeftPanel = () => {
   const [authorInfo ,setAuthorInfo] = useState(null);
   const APIdomain = config.APIdomain; 
 
-  const handleSave = () =>{
+  const handleSave = (bio,twitter,linkedIn,facebook,website) =>{
     console.log('bio saved !')
     setEditState(false);
+    setAuthorInfo({
+      'firstname':authorInfo.firstname,
+      'bio': bio,
+      'twitter': twitter,
+      'linkedIn' :linkedIn,
+      'facebook': facebook,
+      'website': website
+    });
   }
   const handleEditButton = () =>{
     setEditState(true);
@@ -80,7 +88,7 @@ const LeftPanel = () => {
                 <IconButton color='inherit'>
                   <TwitterIcon/>  
                 </IconButton>
-                <IconButton color='inherit'>
+                <IconButton color='inherit' href='https://github.com'>
                   <LinkedInIcon/>  
                 </IconButton>
                 <IconButton color='inherit'>

@@ -63,6 +63,16 @@ class AuthorModel(BaseModel):
             }
         return None
     
+    def edit_profile_bio(self,params):
+        query =f"""
+        UPDATE {self.table}
+        SET
+        bio = %s, twitter=%s, linkedIn =%s, facebook = %s, website =%s
+        WHERE
+        author_id = %s
+        """
+        self.update(query,params)
+
     def get_author_info(self,author_id):
         params = [author_id]
         query = f"""

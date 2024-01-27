@@ -4,7 +4,7 @@ CREATE TABLE author (
     lastname VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     secure_password VARCHAR(255) NOT NULL,
-    bio VARCHAR(15) DEFAULT 'Hi there !'
+    bio VARCHAR(30) DEFAULT 'Hi there !'
     unique_salt VARCHAR(50) NOT NULL,
     date_joined DATE NOT NULL,
     time_joined TIME NOT NULL,
@@ -12,4 +12,8 @@ CREATE TABLE author (
     last_login_time TIME,
     is_active BOOLEAN NOT NULL DEFAULT true,
     profile_picture_url VARCHAR(255) DEFAULT NULL,
+    twitter VARCHAR(100) DEFAULT NULL,
+    linkedIn VARCHAR(100) DEFAULT NULL,
+    facebook VARCHAR(100) DEFAULT NULL,
+    website VARCHAR(100) DEFAULT NULL
 );

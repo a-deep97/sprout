@@ -9,18 +9,53 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import LanguageIcon from '@mui/icons-material/Language';
 import SaveIcon from '@mui/icons-material/Save';
 
+import getCookie from '../lib/authentication';
+import config from '../../../config';
+
 function EditBio(props){
 
-    const [bio,setBio] = useState(null)
-    const [twitterLink,setTwitterLink] = useState(null);
-    const [linkedInLink,setLinkedInLink] = useState(null);
-    const [facebookLink,setFacebookLink] = useState(null);
-
-    const handleSubmit = () =>{
-        props.handleSave();
+    const APIdomain = config.APIdomain;
+    const [bio,setBio] = useState('')
+    const [twitterLink,setTwitterLink] = useState('');
+    const [linkedInLink,setLinkedInLink] = useState('');
+    const [facebookLink,setFacebookLink] = useState('');
+    const [websiteLink,setWebsiteLink] = useState('');
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        const formData={
+            "bio":bio,
+            "twitter":twitterLink,
+            "facebook":linkedInLink,
+            "linkedIn":facebookLink,
+            "website":websiteLink
+          }
+          const csrfToken = getCookie('csrftoken');
+          fetch(`${APIdomain}/profile/bio/edit`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': csrfToken,
+              },
+              body: JSON.stringify(formData),
+              credentials : 'include',
+              })
+              .then((response) => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then((data) => {
+                console.log('Response from server:', data);
+                props.handleSave(data.bio,data.twitter,data.linkedIn,data.facebook,data.website);
+              })
+              .catch((error) => {
+                console.error('There was a problem with the edit operation:', error);
+                window.alert("Bio could not be updated :( \n\n "+ error.message)
+          });
     }
     return(
-        <form className='edit-bio-form' onSubmit={handleSubmit}>
+        <form className='edit-bio-form' onSubmit={ (e) => {handleSubmit(e)}}>
             <TextField
                 InputProps={{
                     style: { color: 'white' } // Apply style to input element
@@ -32,6 +67,8 @@ function EditBio(props){
                 style={{ marginLeft: '5px' }}
                 size='small'
                 placeholder='bio ...'
+                onChange={ (e) => setBio(e.target.value)}
+                
             />
             <Box display={'flex'} marginTop={1} flexDirection={'column'} alignContent={'center'} alignItems={'center'} style={{'border-top': 'solid 0.5px rgba(255,255,255,0.5)'}}>
                 <Typography marginTop={1}>social links</Typography>
@@ -48,6 +85,7 @@ function EditBio(props){
                         style={{ marginLeft: '5px' }}
                         size='small'
                         placeholder='twitter...'
+                        onChange={ (e) => setTwitterLink(e.target.value)}
                     />
                 </Box>
                 <Box display={'flex'} flexDirection={'row'} alignContent={'center'} alignItems={'center'}>
@@ -63,6 +101,7 @@ function EditBio(props){
                         style={{ marginLeft: '5px' }}
                         size='small'
                         placeholder='linkedin...'
+                        onChange={ (e) => setLinkedInLink(e.target.value)}
                     />
                 </Box>
                 <Box display={'flex'} flexDirection={'row'} alignContent={'center'} alignItems={'center'}>
@@ -78,6 +117,7 @@ function EditBio(props){
                         style={{ marginLeft: '5px' }}
                         size='small'
                         placeholder='facebook...'
+                        onChange={ (e) => setFacebookLink(e.target.value)}
                     />
                 </Box>
                 <Box display={'flex'} flexDirection={'row'} alignContent={'center'} alignItems={'center'}>
@@ -93,6 +133,7 @@ function EditBio(props){
                         style={{ marginLeft: '5px' }}
                         size='small'
                         placeholder='website...'
+                        onChange={ (e) => setWebsiteLink(e.target.value)}
                     />
                 </Box>
             </Box>

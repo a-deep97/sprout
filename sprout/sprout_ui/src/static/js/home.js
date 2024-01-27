@@ -7,12 +7,14 @@ import RightPanel from './utilities/right_panel';
 import Sprouts from './utilities/sprouts';
 import QuickPost from './forms/quick_post';
 import CreateSproutButton from './buttons/create_sprout_button';
+import TopNavbar from './utilities/top-navbar';
 
 const HomePage = () => {
   return (
     <div className='page-body'>
         <LeftPanel/>  
         <div className="main-container">
+            <TopNavbar/>
             <QuickPost/>
             <div className='home-posts'>
               <Sprouts/>

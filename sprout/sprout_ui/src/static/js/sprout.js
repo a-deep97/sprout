@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import LeftPanel from './utilities/left_panel';
 import RightPanel  from './utilities/right_panel';
 import SproutView from './utilities/sprout_view';
+import TopNavbar from './utilities/top-navbar.js';
 import Logo from './utilities/logo';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -57,8 +58,8 @@ const Sprout = () => {
     <div className='page-body'>
         <LeftPanel/>  
         <div className="main-container">
-            <Logo/>
-              {<SproutView sproutData={sproutData} />}
+          <TopNavbar/>
+          {<SproutView sproutData={sproutData} />}
         </div>
         <RightPanel/>
     </div>

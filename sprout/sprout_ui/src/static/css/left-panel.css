@@ -18,10 +18,9 @@ body, h1, h2, h3, p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 10px;
     width: 200px;
-    height: 200px;
-  }
+   }
   .user-info {
     display: flex;
     flex-direction: column;

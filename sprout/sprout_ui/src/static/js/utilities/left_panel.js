@@ -2,6 +2,8 @@
 import '../../css/left-panel.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
+import {Typography} from '@mui/material';
+
 import Avatar from './avatar';
 import LogoutButton from '../buttons/logout_button';
 const LeftPanel = () => {
@@ -22,7 +24,7 @@ const LeftPanel = () => {
       <div className='profile-section'>
         <Avatar/>
         <div className='user-info'>
-          <div className='user-name'>Aman Deep</div>
+          <Typography variant = 'subtitle1' align='center'>Amannnnnnnnnnnnnnnn Deep</Typography>
           <hr className='custom-hr'/>
         </div>
       </div>

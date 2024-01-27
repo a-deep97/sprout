@@ -6,7 +6,7 @@ import {Typography,Box,Link} from '@mui/material';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import {IconButton} from '@mui/material';
+import {IconButton, Button} from '@mui/material';
 
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 
@@ -15,14 +15,23 @@ import LogoutButton from '../buttons/logout_button';
 
 import config from '../../../config.js';
 import getCookie from '../lib/authentication';
+import EditBio from '../forms/edit_bio.js';
 
 
 const LeftPanel = () => {
 
   const navigate = useNavigate()
+  const [editState,setEditState] = useState(false);
   const [authorInfo ,setAuthorInfo] = useState(null);
   const APIdomain = config.APIdomain; 
 
+  const handleSave = () =>{
+    console.log('bio saved !')
+    setEditState(false);
+  }
+  const handleEditButton = () =>{
+    setEditState(true);
+  }
   useEffect(() =>{
     const fetchAuthorInfo = () =>{
       const csrfToken = getCookie('csrftoken');
@@ -56,26 +65,32 @@ const LeftPanel = () => {
         <Avatar/>
         <div className='user-info'>
           <Typography variant = 'h4' align='center'>{authorInfo && authorInfo.firstname}</Typography>
-          <Typography variant='subtitle' marginTop={2} align='center'>{authorInfo && authorInfo.bio}</Typography>
-          <Box marginTop={2} style={{'border-top': 'solid 0.5px rgba(255,255,255,0.5)'}}>
-            <PeopleOutlineIcon/>
-            <Typography variant='caption'> . </Typography>
-            <Typography variant='caption'>Followers</Typography>
-            <Typography variant='caption'> . </Typography> 
-            <Typography variant='caption'>Following</Typography>
-          </Box>
-          
-          <Box alignItems={'center'} alignContent={'center'} marginTop={2} display={'flex'} flexDirection={'row'}>
-            <IconButton color='inherit'>
-              <TwitterIcon/>  
-            </IconButton>
-            <IconButton color='inherit'>
-              <LinkedInIcon/>  
-            </IconButton>
-            <IconButton color='inherit'>
-              <FacebookIcon/>  
-            </IconButton>
-          </Box>
+          {
+            editState == false ?
+            <div style={{'display':'flex','flex-direction':'column','align-items':'center'}}>
+              <Typography variant='subtitle' marginTop={2} align='center' >{authorInfo && authorInfo.bio}</Typography>
+              <Box marginTop={2} style={{'border-top': 'solid 0.5px rgba(255,255,255,0.5)'}}>
+                <PeopleOutlineIcon/>
+                <Typography variant='caption'> . </Typography>
+                <Typography variant='caption'>Followers</Typography>
+                <Typography variant='caption'> . </Typography> 
+                <Typography variant='caption'>Following</Typography>
+              </Box>
+              <Box marginBottom={2} alignItems={'center'} alignContent={'center'} marginTop={2} display={'flex'} flexDirection={'row'}>
+                <IconButton color='inherit'>
+                  <TwitterIcon/>  
+                </IconButton>
+                <IconButton color='inherit'>
+                  <LinkedInIcon/>  
+                </IconButton>
+                <IconButton color='inherit'>
+                  <FacebookIcon/>  
+                </IconButton>
+              </Box>
+              <Button onClick={handleEditButton} variant='outlined' color='inherit'>Edit Profile</Button>
+            </div>:
+            <EditBio handleSave={handleSave}/>
+          }
         </div>
       </div>
       <div className='logout-section'>

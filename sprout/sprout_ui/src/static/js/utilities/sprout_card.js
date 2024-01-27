@@ -7,12 +7,17 @@ import ProfileIcon from '../utilities/profile_icon';
 import PostDeleteButton from '../buttons/delete_post_button'; 
 import SavePostButton from '../buttons/save_post_button';
 
+import {Snackbar, Alert} from '@mui/material'
+
 import config from '../../../config.js';
 
 const SproutCard = (props) => {
 
     const APIdomain = config.APIdomain;
     const navigate = useNavigate();
+    const [likeSnack,setLikeSnack] = useState(false);
+    const [dislikeSnack,setDislikeSnack] = useState(false);
+
     const [sproutID,setSproutID] = useState(null);
     const [likes,setLike] = useState(null);
     const [dislikes,setDislike] = useState(null);
@@ -62,10 +67,12 @@ const SproutCard = (props) => {
     const handleLike = (e) => {
         e.stopPropagation();
         fetchLikeDislike(`${APIdomain}/sprout/like?sprout_id=${sproutID}`);
+        setLikeSnack(true);
     }
     const handleDislike = (e) => {
         e.stopPropagation();
         fetchLikeDislike(`${APIdomain}/sprout/dislike?sprout_id=${sproutID}`);
+        setDislikeSnack(true);
     }
     const handleCardClick = (sprout_id) => {
         const sprout_id_key={
@@ -96,10 +103,28 @@ const SproutCard = (props) => {
                     <button type="button" className="btn btn-outline-primary btn-sm" onClick={handleLike}>
                         <i className="bi-hand-thumbs-up"></i>
                     </button>
+                    <Snackbar open = {likeSnack} autoHideDuration={5000} onClose={() => {setLikeSnack(false)}} >
+                        <Alert
+                        onClose={() => {setLikeSnack(false)}}
+                        severty = "success"
+                        sx= {{width: '100%'}}
+                        >
+                            You liked this post
+                        </Alert>
+                    </Snackbar>
                     <span className="text-muted ml-2">{likes}</span>
                     <button type="button" className="btn btn-outline-danger btn-sm ml-2" onClick={handleDislike}>
                         <i className="bi-hand-thumbs-down"></i>
                     </button>
+                    <Snackbar open = {dislikeSnack} autoHideDuration={5000} onClose={() => {setDislikeSnack(false)}} >
+                        <Alert
+                        onClose={() => {setLikeSnack(false)}}
+                        severty = "success"
+                        sx= {{width: '100%'}}
+                        >
+                            You disliked this post
+                        </Alert>
+                    </Snackbar>
                     <span className="text-muted ml-2">{dislikes}</span>
                 </div>
             </div>

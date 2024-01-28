@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/css/main.6b4c1982.css",
+    "main.js": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/js/main.40f82f44.js",
+    "static/js/787.6cb3f50a.chunk.js": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/js/787.6cb3f50a.chunk.js",
+    "static/media/png": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/media/1e7b63404cd2fb8e6525b2fd4ee4d286.b0275d38b7b78d6dd461.png",
+    "static/media/bootstrap-icons.woff?": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/media/bootstrap-icons.66b7720f4a230f1b0341.woff",
+    "static/media/bootstrap-icons.woff2?": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/media/bootstrap-icons.64ed46b247405068ca60.woff2",
+    "static/media/auth-img.jpg": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/media/auth-img.3187ab861bc8076d2857.jpg",
+    "static/media/avatar.png": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/media/avatar.cb0ab3261845d004f493.png",
+    "index.html": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/index.html",
+    "main.6b4c1982.css.map": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/css/main.6b4c1982.css.map",
+    "main.40f82f44.js.map": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/js/main.40f82f44.js.map",
+    "787.6cb3f50a.chunk.js.map": "/%3Chttps://a-deep97.github.io/sprout/sprout/sprout_ui%3E/static/js/787.6cb3f50a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6b4c1982.css",
+    "static/js/main.40f82f44.js"
+  ]
+}
